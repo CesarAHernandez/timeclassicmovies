@@ -39,8 +39,9 @@ class Home extends React.Component {
                 <h2>Welcome Home {'\u2728'}</h2>
                 <p>List of all users on the system</p>
                 <ul>
-                    {this.state.users.map(user => (
+                    {this.state.users.map((user, index) => (
                         <ol
+                            key={index}
                             style={{
                                 padding: 15,
                                 border: '1px solid #cccccc',

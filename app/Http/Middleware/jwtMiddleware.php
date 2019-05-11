@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Middleware;
+use Illuminate\Support\Facades\Log;
 use Closure;
 use JWTAuth;
 use Exception;
@@ -15,6 +16,7 @@ class jwtMiddleware
     public function handle($request, Closure $next)
     {
         try {
+            // Log::debug($request->input('token'));
             $user = JWTAuth::toUser($request->input('token'));
         } catch (Exception $e) {
             if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException){

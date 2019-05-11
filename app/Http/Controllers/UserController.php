@@ -90,5 +90,11 @@ class UserController extends Controller
         }
         return response()->json($response, 201);
     }
+    public function list(Request $request){
+        $users = \App\User::all();
+
+        $response = ['success' => true, 'data' => $users];
+        return response()->json($response, 201);
+    }
 
 }

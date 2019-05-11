@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,12 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['middleware' => ['jwt.auth', 'api-header']], function(){
-    Route::get('user/list', function(){
-        $users = App\User::all();
-
-        $response = ['success' => true, 'data' => $users];
-        return response()->json($response, 201);
-    });
+    Route::get('users/list', 'UserController@list');
 });
 
 Route::group(['middleware' => 'api-header'], function(){
