@@ -1,70 +1,73 @@
-
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
 // Variables
 @import 'variables';
 @import 'home';
+@import 'login';
 
-*{
+* {
     margin: 0;
     padding: 0;
 }
-body{
+body {
     background: $background-color;
 }
-a{
+a {
     color: $link-color;
 }
-.video{
+input {
+    outline: none;
+    border: none;
+}
+.video {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 200px;
     align-self: center;
-    a{
+    a {
         text-decoration: none;
     }
-    img{
+    img {
         width: 182px;
         height: 269px;
     }
-    .video-title{
+    .video-title {
         font-size: 1.5rem;
         font-weight: 600;
         text-transform: capitalize;
     }
 }
-.container{
+.container {
     width: 100%;
     max-width: 1400px;
     padding: 0 240px;
     margin: 0 auto;
 }
-#nav-bar{
+#nav-bar {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding: 20px;
     background: $background-color;
-    .logo{
-        img{
+    .logo {
+        img {
             height: 50px;
             width: 50px;
         }
     }
-    .menu{
+    .menu {
         text-transform: uppercase;
         font-size: 1.8rem;
         padding: 20px 0;
-        a{
+        a {
             padding-right: 20px;
             text-decoration: none;
-            &:hover{
+            &:hover {
                 color: red;
             }
         }
     }
-
 }
