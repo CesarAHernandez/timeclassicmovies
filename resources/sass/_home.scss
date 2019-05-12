@@ -1,0 +1,32 @@
+#home-page{
+    .container{
+        .hero{
+            img{
+                width: 100%;
+            }
+        }
+        .film-section{
+            .genre-section{
+
+                .genre{
+                    font-size: 1.5rem;
+                    font-weight: 700px;
+                    padding: 10px;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+
+                }
+
+                .videos{
+                    display: grid;
+                    grid-template-columns: repeat(7, 198px);
+                    grid-gap: 2px;
+                }
+
+            }
+
+        }
+    }
+}

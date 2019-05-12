@@ -7,59 +7,46 @@ const styles = {
 };
 
 class Home extends React.Component {
-    constructor(props) {
-        super(props);
-        //let { user } = this.props.appstate;
-        this.state = {
-            token: localStorage['appState'] ? JSON.parse(localStorage['appState']).user.auth_token : '',
-            users: []
-        };
-    }
-
-    componentDidMount() {
-        axios
-            .get(`http://localhost/api/users/list?token=${this.state.token}`)
-            .then(response => {
-                console.log(response);
-                return response;
-            })
-            .then(json => {
-                if (json.data.success) {
-                    this.setState({ users: json.data.data });
-                } else alert('Login Failed!');
-            })
-            .catch(error => {
-                console.error(`An Error Occuredd! ${error}`);
-            });
-    }
+    state = {
+        token: localStorage['appState'] ? JSON.parse(localStorage['appState']).user.auth_token : '',
+        users: []
+    };
 
     render() {
+        var elements = ['1', '2', '3', '1', '2', '3', '1'];
         return (
-            <div style={styles}>
-                <h2>Welcome Home {'\u2728'}</h2>
-                <p>List of all users on the system</p>
-                <ul>
-                    {this.state.users.map((user, index) => (
-                        <ol
-                            key={index}
-                            style={{
-                                padding: 15,
-                                border: '1px solid #cccccc',
-                                width: 250,
-                                textAlign: 'left',
-                                marginBottom: 15,
-                                marginLeft: 'auto',
-                                marginRight: 'auto'
-                            }}
-                        >
-                            <p>Name: {user.name}</p>
-                            <p>Email: {user.email}</p>
-                        </ol>
-                    ))}
-                </ul>
-                <button style={{ padding: 10, backgroundColor: 'red', color: 'white' }} onClick={this.props.logoutUser}>
-                    Logout{' '}
-                </button>
+            <div id="home-page">
+                <div class="container">
+                    <div class="hero">
+                        <img src="https://i.pinimg.com/originals/3a/a7/29/3aa729e58ccc5ade93239ff883235551.jpg" />
+                    </div>
+                    <div class="film-section">
+                        {['Action', 'Thriller', 'Cartoon', 'Comedy'].map(genre => {
+                            return (
+                                <div class="genre-section">
+                                    <div class="genre">
+                                        <h1>{genre}</h1>
+                                        <a href="#">View all</a>
+                                    </div>
+                                    <div class="videos">
+                                        {elements.map(value => {
+                                            return (
+                                                <div class="video">
+                                                    <a href="">
+                                                        <img src="https://m.media-amazon.com/images/M/MV5BNDU4Mzc3NzE5NV5BMl5BanBnXkFtZTgwMzE1NzI1NzM@._V1_UX182_CR0,0,182,268_AL_.jpg" />
+                                                    </a>
+                                                    <a href="">
+                                                        <div class="video-title">detective pikachu</div>
+                                                    </a>
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
             </div>
         );
     }

@@ -4,4 +4,67 @@
 
 // Variables
 @import 'variables';
+@import 'home';
 
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background: $background-color;
+}
+a{
+    color: $link-color;
+}
+.video{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    align-self: center;
+    a{
+        text-decoration: none;
+    }
+    img{
+        width: 182px;
+        height: 269px;
+    }
+    .video-title{
+        font-size: 1.5rem;
+        font-weight: 600;
+        text-transform: capitalize;
+    }
+}
+.container{
+    width: 100%;
+    max-width: 1400px;
+    padding: 0 240px;
+    margin: 0 auto;
+}
+#nav-bar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+    background: $background-color;
+    .logo{
+        img{
+            height: 50px;
+            width: 50px;
+        }
+    }
+    .menu{
+        text-transform: uppercase;
+        font-size: 1.8rem;
+        padding: 20px 0;
+        a{
+            padding-right: 20px;
+            text-decoration: none;
+            &:hover{
+                color: red;
+            }
+        }
+    }
+
+}

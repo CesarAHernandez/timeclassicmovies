@@ -145,7 +145,7 @@ class App extends Component {
         return (
             <BrowserRouter>
                 <div>
-                    <Navigation />
+                    <Navigation isLoggedIn={this.state.isLoggedIn} logoutUser={this._logoutUser} />
                     <Switch>
                         <Route path="/" render={props => <Home {...props} logoutUser={this._logoutUser} />} exact />
 
