@@ -10,52 +10,71 @@ const Register = ({ history, registerUser = f => f }) => {
         registerUser(_name.value, _email.value, _password.value);
     };
     return (
-        <div id="main">
-            <form id="login-form" action="" onSubmit={handleLogin} method="post">
-                <h3 style={{ padding: 15 }}>Register Form</h3>
-                <input
-                    ref={input => (_name = input)}
-                    // style={styles.input}
-                    autoComplete="off"
-                    id="email-input"
-                    name="email"
-                    type="text"
-                    className="center-block"
-                    placeholder="Name"
-                />
-                <input
-                    ref={input => (_email = input)}
-                    // style={styles.input}
-                    autoComplete="off"
-                    id="email-input"
-                    name="email"
-                    type="text"
-                    className="center-block"
-                    placeholder="email"
-                />
-                <input
-                    ref={input => (_password = input)}
-                    // style={styles.input}
-                    autoComplete="off"
-                    id="password-input"
-                    name="password"
-                    type="password"
-                    className="center-block"
-                    placeholder="password"
-                />
-                <button
-                    type="submit"
-                    // style={styles.button}
-                    className="landing-page-btn center-block text-center"
-                    id="email-login-btn"
-                    href="#facebook"
-                >
-                    Register
-                </button>
-
-                {/* <Link style={styles.link} to="/login"> */}
-                <Link to="/login">Login</Link>
-            </form>
+        <div id="register-page" class="container">
+            <div className="form-container">
+                <form id="login-form" action="" onSubmit={handleLogin} method="post">
+                    <span className="form-header">Register</span>
+                    <label htmlFor="name-input">Name</label>
+                    <div className="form-input">
+                        <span>login logo</span>
+                        <input
+                            ref={input => (_name = input)}
+                            // style={styles.input}
+                            autoComplete="off"
+                            id="email-input"
+                            name="email"
+                            type="text"
+                            className="center-block"
+                            placeholder="Name"
+                        />
+                    </div>
+                    <label htmlFor="email-input">Email</label>
+                    <div className="form-input">
+                        <span>login logo</span>
+                        <input
+                            ref={input => (_email = input)}
+                            // style={styles.input}
+                            autoComplete="off"
+                            id="email-input"
+                            name="email"
+                            type="text"
+                            className="center-block"
+                            placeholder="Type your Email"
+                        />
+                    </div>
+                    <label htmlFor="password-input">Password</label>
+                    <div className="form-input">
+                        <span>password logo</span>
+                        <input
+                            ref={input => (_password = input)}
+                            // style={styles.input}
+                            autoComplete="off"
+                            id="password-input"
+                            name="password"
+                            type="password"
+                            className="center-block"
+                            placeholder="Type Your password"
+                        />
+                    </div>
+                    <label htmlFor="confirm-password-input">Confirm Password</label>
+                    <div className="form-input">
+                        <span>password logo</span>
+                        <input
+                            ref={input => (_password = input)}
+                            // style={styles.input}
+                            autoComplete="off"
+                            id="confirm-password-input"
+                            name="password"
+                            type="password"
+                            className="center-block"
+                            placeholder="Confirm Your password"
+                        />
+                    </div>
+                    <button type="submit" id="email-login-btn" href="#facebook">
+                        Register
+                    </button>
+                </form>
+            </div>
         </div>
     );
 };
