@@ -9,7 +9,10 @@ import About from './components/About';
 import ErrorPage from './components/ErrorPage';
 import Login from './components/Login';
 import Register from './components/Register';
+import SingleMovie from './components/SingleMovie';
 import Navigation from './components/Navigation';
+import Catalog from './components/Catalog';
+import Membership from './components/Membership';
 
 class App extends Component {
     state = {
@@ -152,6 +155,9 @@ class App extends Component {
                         <Route path="/about" component={About} />
                         <Route path="/login" render={props => <Login {...props} loginUser={this._loginUser} />} />
                         <Route path="/register" render={props => <Register {...props} registerUser={this._registerUser} />} />
+                        <Route path="/catalog" component={Catalog} />
+                        <Route path="/movie/:id" component={SingleMovie} />
+                        <Route path="/membership" component={Membership} />
                         <Route component={ErrorPage} />
                     </Switch>
                 </div>

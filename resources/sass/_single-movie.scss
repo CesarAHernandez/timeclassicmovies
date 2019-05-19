@@ -1,0 +1,32 @@
+#singleMovie-page.container {
+    .video-trailer {
+        display: flex;
+        justify-content: center;
+        background: black;
+    }
+    .video-description {
+        margin-top: 15px;
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        grid-gap: 15px;
+        .video-summary {
+            display: flex;
+            flex-direction: column;
+            .video-title {
+                font-size: 1.5rem;
+                font-weight: 700;
+            }
+            .video-length {
+                font-size: 0.8rem;
+            }
+            .video-rating {
+                font-size: 1.5rem;
+                font-weight: 700;
+            }
+            .video-synopsis {
+                line-height: 1.5;
+                font-size: 1.1rem;
+            }
+        }
+    }
+}

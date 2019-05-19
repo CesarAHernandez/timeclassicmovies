@@ -12,7 +12,9 @@ export default class Navigation extends Component {
                 </div>
                 <div className="menu">
                     <NavLink to="/">Home</NavLink>
-                    <NavLink to="/about">about</NavLink>
+                    <NavLink to="/about">About</NavLink>
+                    <NavLink to="/catalog">Catalog</NavLink>
+                    <NavLink to="/membership">Membership</NavLink>
                     {(() => {
                         return this.props.isLoggedIn ? <a onClick={this.props.logoutUser}>Log Out</a> : <NavLink to="/login">Log In</NavLink>;
                     })()}

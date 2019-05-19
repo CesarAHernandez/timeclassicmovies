@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const styles = {
     fontFamily: 'sans-serif',
@@ -31,12 +32,12 @@ class Home extends React.Component {
                                     {elements.map(value => {
                                         return (
                                             <div className="video">
-                                                <a href="">
+                                                <Link to={`/movie/${value}`}>
                                                     <img src="https://m.media-amazon.com/images/M/MV5BNDU4Mzc3NzE5NV5BMl5BanBnXkFtZTgwMzE1NzI1NzM@._V1_UX182_CR0,0,182,268_AL_.jpg" />
-                                                </a>
-                                                <a href="">
-                                                    <div className="video-title">detective pikachu</div>
-                                                </a>
+                                                </Link>
+                                                <Link to={`/movie/${value}`}>
+                                                    <div className="video-title">detective pikachu</div>{' '}
+                                                </Link>
                                             </div>
                                         );
                                     })}

@@ -6,6 +6,9 @@
 @import 'home';
 @import 'login';
 @import 'register';
+@import 'single-movie';
+@import 'catalog';
+@import 'membership';
 
 * {
     margin: 0;
@@ -44,7 +47,6 @@ input {
 .container {
     width: 100%;
     max-width: 1400px;
-    padding: 0 240px;
     margin: 0 auto;
 }
 #nav-bar {
