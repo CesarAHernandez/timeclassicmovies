@@ -1,30 +1,57 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const SingleMovie = ({ match }) => {
+    const [movieInfo, setMovieInfo] = useState({
+        title: '',
+        poster_location: '',
+        synopsis: '',
+        hours: 0,
+        minutes: 0
+    });
+    useEffect(() => {
+        const url = `http://localhost/api/movie/${match.params.id}`;
+        axios
+            .get(url)
+            .then(data => {
+                return data.data;
+            })
+            .then(json => {
+                const movie = json.data;
+                //setting the movie state to the movie that we got from the database
+                setMovieInfo({
+                    title: movie.title,
+                    poster_location: movie.poster_location,
+                    synopsis: movie.synopsis,
+                    hours: 0,
+                    minutes: 0
+                });
+            });
+    }, []);
+
+    if (movieInfo.title.length === 0) {
+        return <div> Loading... </div>;
+    }
+
     return (
         <div id="singleMovie-page" className="container">
-            <h1>{match.params.id}</h1>
+            <h1>{movieInfo.title}</h1>
             <div className="video-trailer">
-                <img src="https://pbs.twimg.com/media/D4zttWUXsAEGJOa.jpg" />
+                <img src={movieInfo.poster_location} />
             </div>
             <div className="video-description">
                 <div className="video-img">
                     <div className="video">
-                        <img src="https://m.media-amazon.com/images/M/MV5BNDU4Mzc3NzE5NV5BMl5BanBnXkFtZTgwMzE1NzI1NzM@._V1_UX182_CR0,0,182,268_AL_.jpg" />
+                        <img src={movieInfo.poster_location} />
                     </div>
                 </div>
                 <div className="video-summary">
-                    <span className="video-title">One Punch-Man: Movie Saitama</span>
-                    <span className="video-length">1 hour 23 minutes</span>
-                    <span className="video-rating">4/5 Stars</span>
-                    <span className="video-synopsis">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy
-                        text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has
-                        survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was
-                        popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
-                        publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                    <span className="video-title">{movieInfo.title}</span>
+                    <span className="video-length">
+                        {movieInfo.hours} hour {movieInfo.minutes} minutes
                     </span>
+                    <span className="video-rating">4/5 Stars</span>
+                    <span className="video-synopsis">{movieInfo.synopsis}</span>
                 </div>
             </div>
         </div>

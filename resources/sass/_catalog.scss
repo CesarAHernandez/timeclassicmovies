@@ -6,6 +6,18 @@
         span {
             margin-bottom: 10px;
         }
+        .searchForm-container {
+            width: 100%;
+            display: grid;
+            grid-template-rows: 15px 10px;
+            justify-content: end;
+            grid-gap: 10px;
+            .search-result-container {
+                li {
+                    list-style-type: none;
+                }
+            }
+        }
     }
     .grid {
         display: grid;

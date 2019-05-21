@@ -17,7 +17,6 @@ const Login = ({ history, loginUser = f => f }) => {
                         <span>login logo</span>
                         <input
                             ref={input => (_email = input)}
-                            // style={styles.input}
                             autoComplete="off"
                             id="email-input"
                             name="email"
@@ -31,7 +30,6 @@ const Login = ({ history, loginUser = f => f }) => {
                         <span>password logo</span>
                         <input
                             ref={input => (_password = input)}
-                            // style={styles.input}
                             autoComplete="off"
                             id="password-input"
                             name="password"

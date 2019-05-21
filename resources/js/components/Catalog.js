@@ -1,28 +1,46 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-const Catalog = () => {
-    var movies = [1, 2, 3, 4, 11, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2];
-    return (
-        <div id="catalog-page" className="container">
-            <h1>Catalog</h1>
-            <div className="search-container">
-                <span>This is where search will go</span>
-            </div>
-            <div className="grid">
-                {movies.map(value => {
-                    return (
-                        <div className="video">
-                            <Link to={`/movie/${value}`}>
-                                <img src="https://m.media-amazon.com/images/M/MV5BNDU4Mzc3NzE5NV5BMl5BanBnXkFtZTgwMzE1NzI1NzM@._V1_UX182_CR0,0,182,268_AL_.jpg" />
-                            </Link>
-                            <div className="video-title">detective pikachu</div>
-                        </div>
-                    );
-                })}
-            </div>
-        </div>
-    );
-};
+import Search from './Search';
 
-export default Catalog;
+export default class Catalog extends Component {
+    state = {
+        movies: []
+    };
+    componentDidMount() {
+        axios
+            .get('http://localhost/api/movies/list')
+            .then(response => {
+                return response.data;
+            })
+            .then(json => {
+                this.setState({
+                    movies: json.data
+                });
+            });
+    }
+    render() {
+        var { movies } = this.state;
+        return (
+            <div id="catalog-page" className="container">
+                <h1>Catalog</h1>
+                <div className="search-container">
+                    <Search />
+                </div>
+                <div className="grid">
+                    {movies.map((movie, index) => {
+                        return (
+                            <div className="video" key={index}>
+                                <Link to={`/movie/${movie.id}`}>
+                                    <img src={movie.poster_location} />
+                                </Link>
+                                <div className="video-title">{movie.title}</div>
+                            </div>
+                        );
+                    })}
+                </div>
+            </div>
+        );
+    }
+}

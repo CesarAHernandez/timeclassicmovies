@@ -1,11 +1,5 @@
 import React from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
-
-const styles = {
-    fontFamily: 'sans-serif',
-    textAlign: 'center'
-};
 
 class Home extends React.Component {
     state = {
@@ -26,7 +20,7 @@ class Home extends React.Component {
                             <div className="genre-section">
                                 <div className="genre">
                                     <h1>{genre}</h1>
-                                    <a href="#">View all</a>
+                                    <Link to="/catalog">View all</Link>
                                 </div>
                                 <div className="videos">
                                     {elements.map(value => {
