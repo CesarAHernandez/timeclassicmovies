@@ -11,4 +11,8 @@ class Movie extends Model
         'title', 'synopsis', 'release_year', 'imdb_url', 's3_location', 'isRestricted'
     ];
     protected $guarded = array();
+
+    public function genres(){
+        return $this->belongsToMany('App\Genre');
+    }
 }

@@ -1,25 +1,44 @@
 #catalog-page.container {
     .search-container {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end;
+        // display: flex;
+        // flex-direction: row;
+        // justify-content: flex-end;
+        // display: grid;
+        // grid-template-columns: 1fr;
+        position: relative;
         span {
             margin-bottom: 10px;
         }
         .searchForm-container {
             width: 100%;
+
+            // display: grid;
+            // grid-template-rows: 15px 200px;
+            // justify-content: end;
+            // grid-gap: 10px;
+            // display: flex;
+            // flex-direction: column;
+            position: absolute;
             display: grid;
-            grid-template-rows: 15px 10px;
-            justify-content: end;
-            grid-gap: 10px;
+            grid-template-columns: 1fr;
+            justify-items: end;
             .search-result-container {
+                z-index: 1;
+                width: 160px;
+                height: 200px;
+                overflow: hidden;
+                background: black;
                 li {
                     list-style-type: none;
+                    a {
+                        color: white;
+                    }
                 }
             }
         }
     }
     .grid {
+        margin-top: 30px;
         display: grid;
         grid-template-columns: repeat(6, 1fr);
         grid-template-rows: repeat(5, 1fr);
