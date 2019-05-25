@@ -1,21 +1,35 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
+// frontPageMovies = {
+//     action : ['movie1', 'movie12']
+// }
 class Home extends React.Component {
     state = {
         token: localStorage['appState'] ? JSON.parse(localStorage['appState']).user.auth_token : '',
-        users: []
+        frontPageMovies: {}
     };
+    componentDidMount() {
+        var url = '/api/movies/sortedByGenre';
+        axios
+            .get(url)
+            .then(response => response.data)
+            .then(json => {
+                this.setState({ frontPageMovies: json.data });
+            });
+    }
 
     render() {
-        var elements = ['1', '2', '3', '1', '2', '3', '1'];
+        var popularGenres = Object.keys(this.state.frontPageMovies);
+        console.log(this.state);
         return (
             <div id="home-page" className="container">
                 <div className="hero">
                     <img src="https://i.pinimg.com/originals/3a/a7/29/3aa729e58ccc5ade93239ff883235551.jpg" />
                 </div>
                 <div className="film-section">
-                    {['Action', 'Thriller', 'Cartoon', 'Comedy'].map(genre => {
+                    {popularGenres.map(genre => {
                         return (
                             <div className="genre-section">
                                 <div className="genre">
@@ -23,14 +37,14 @@ class Home extends React.Component {
                                     <Link to="/catalog">View all</Link>
                                 </div>
                                 <div className="videos">
-                                    {elements.map(value => {
+                                    {this.state.frontPageMovies[genre].map(value => {
                                         return (
                                             <div className="video">
-                                                <Link to={`/movie/${value}`}>
-                                                    <img src="https://m.media-amazon.com/images/M/MV5BNDU4Mzc3NzE5NV5BMl5BanBnXkFtZTgwMzE1NzI1NzM@._V1_UX182_CR0,0,182,268_AL_.jpg" />
+                                                <Link to={`/movie/${value.id}`}>
+                                                    <img src={value.poster_location} />
                                                 </Link>
-                                                <Link to={`/movie/${value}`}>
-                                                    <div className="video-title">detective pikachu</div>{' '}
+                                                <Link to={`/movie/${value.id}`}>
+                                                    <div className="video-title">{value.title}</div>
                                                 </Link>
                                             </div>
                                         );

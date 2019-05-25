@@ -29,4 +29,5 @@ Route::group(['middleware' => 'api-header'], function(){
     Route::get('movies/list','MovieController@list');
     Route::get('movie/{id}','MovieController@one');
     Route::post('movie/search', 'MovieController@search');
+    Route::get('movies/sortedByGenre', 'MovieController@sortedByGenre');
 });

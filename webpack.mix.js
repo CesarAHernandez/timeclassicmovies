@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+const LiveReloadPlugin = require('webpack-livereload-plugin');
 
 /*
  |--------------------------------------------------------------------------
@@ -11,6 +12,13 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.react('resources/js/app.js', 'public/js')
-   .sass('resources/sass/app.scss', 'public/css')
+mix.react('resources/js/App.js', 'public/js')
+    .sass('resources/sass/app.scss', 'public/css')
+    .options({
+        postCss: [require('postcss-css-variables')()],
+        processCssUrls: false
+    })
+    .webpackConfig({
+        plugins: [new LiveReloadPlugin()]
+    });
 // mix.browserSync('http://localhost:3000')
