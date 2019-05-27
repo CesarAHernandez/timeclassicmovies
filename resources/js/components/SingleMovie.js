@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Video from '../components/Video';
 
 const SingleMovie = ({ match }) => {
     const [movieInfo, setMovieInfo] = useState({
@@ -37,7 +38,7 @@ const SingleMovie = ({ match }) => {
         <div id="singleMovie-page" className="container">
             <h1>{movieInfo.title}</h1>
             <div className="video-trailer">
-                <img src={movieInfo.poster_location} />
+                <Video />
             </div>
             <div className="video-description">
                 <div className="video-img">

@@ -41407,8 +41407,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Navigation__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/Navigation */ "./resources/js/components/Navigation.js");
 /* harmony import */ var _components_Catalog__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/Catalog */ "./resources/js/components/Catalog.js");
 /* harmony import */ var _components_Membership__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/Membership */ "./resources/js/components/Membership.js");
-/* harmony import */ var _components_Footer__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/Footer */ "./resources/js/components/Footer.js");
+/* harmony import */ var _components_Video__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/Video */ "./resources/js/components/Video.js");
+/* harmony import */ var _components_Footer__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/Footer */ "./resources/js/components/Footer.js");
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
 
 
 
@@ -41577,7 +41579,7 @@ class App extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       component: _components_Membership__WEBPACK_IMPORTED_MODULE_13__["default"]
     }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
       component: _components_ErrorPage__WEBPACK_IMPORTED_MODULE_7__["default"]
-    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Footer__WEBPACK_IMPORTED_MODULE_14__["default"], null)));
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Footer__WEBPACK_IMPORTED_MODULE_15__["default"], null)));
   }
 
 }
@@ -42283,6 +42285,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_Video__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Video */ "./resources/js/components/Video.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -42290,6 +42293,7 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -42334,9 +42338,7 @@ const SingleMovie = (_ref) => {
     className: "container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, movieInfo.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "video-trailer"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: movieInfo.poster_location
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Video__WEBPACK_IMPORTED_MODULE_2__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "video-description"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "video-img"
@@ -42358,6 +42360,75 @@ const SingleMovie = (_ref) => {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (SingleMovie);
+
+/***/ }),
+
+/***/ "./resources/js/components/Video.js":
+/*!******************************************!*\
+  !*** ./resources/js/components/Video.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+const Video = () => {
+  const _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
+        _useState2 = _slicedToArray(_useState, 2),
+        video = _useState2[0],
+        setVideo = _useState2[1];
+
+  const playerConfig = {
+    key: 'fa0daac8-a7c6-40b2-8abb-012ddbd1b2a3'
+  };
+  const playerSource = {
+    // dash: 'https://s3.amazonaws.com/tcm-stream-out/Afgrunden_1910.mp4',
+    // hls: 'https://bitdash-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8',
+    progressive: 'https://s3.amazonaws.com/tcm-stream-out/Afgrunden_1910.mp4' // poster: 'https://bitdash-a.akamaihd.net/content/MI201109210084_1/poster.jpg'
+
+  };
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    setupPlayer();
+    return function cleanup() {
+      destroyPlayer();
+    };
+  }, []);
+
+  const setupPlayer = () => {
+    const player = new bitmovin.player.Player(document.getElementById('video-player'), playerConfig);
+    player.load(playerSource).then(() => {
+      setVideo(player);
+      console.log('Successfully loaded source');
+    }, () => {
+      console.log('Error while loading source');
+    });
+  };
+
+  const destroyPlayer = () => {
+    if (video != null) {
+      video.destroy();
+      setVideo(null);
+    }
+  };
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "video-player"
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Video);
 
 /***/ }),
 

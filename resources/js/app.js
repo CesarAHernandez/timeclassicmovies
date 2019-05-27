@@ -13,6 +13,7 @@ import SingleMovie from './components/SingleMovie';
 import Navigation from './components/Navigation';
 import Catalog from './components/Catalog';
 import Membership from './components/Membership';
+import Video from './components/Video';
 import Footer from './components/Footer';
 
 class App extends Component {

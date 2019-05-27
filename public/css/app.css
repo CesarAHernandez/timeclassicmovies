@@ -253,6 +253,7 @@
   justify-content: space-between;
 }
 #catalog-page.container .pagination-container .pagination .number {
+  cursor: pointer;
   width: 25px;
   height: 17px;
   border: 2px black solid;

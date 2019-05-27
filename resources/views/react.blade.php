@@ -5,6 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Time Classics</title>
+        <!-- Bitmovin -->
+        <script src="//cdn.bitmovin.com/player/web/8/bitmovinplayer.js"></script>
 
         <!-- Fonts -->
         <link rel="stylesheet" href="{{asset('css/app.css')}}">

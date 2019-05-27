@@ -1,23 +1,11 @@
 #catalog-page.container {
     .search-container {
-        // display: flex;
-        // flex-direction: row;
-        // justify-content: flex-end;
-        // display: grid;
-        // grid-template-columns: 1fr;
         position: relative;
         span {
             margin-bottom: 10px;
         }
         .searchForm-container {
             width: 100%;
-
-            // display: grid;
-            // grid-template-rows: 15px 200px;
-            // justify-content: end;
-            // grid-gap: 10px;
-            // display: flex;
-            // flex-direction: column;
             position: absolute;
             display: grid;
             grid-template-columns: 1fr;
@@ -58,6 +46,7 @@
             flex-direction: row;
             justify-content: space-between;
             .number {
+                cursor: pointer;
                 width: 25px;
                 height: 17px;
                 border: 2px black solid;
