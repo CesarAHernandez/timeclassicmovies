@@ -41779,6 +41779,8 @@ class Home extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
   componentDidMount() {
     var url = '/api/movies/sortedByGenre';
     axios__WEBPACK_IMPORTED_MODULE_2___default.a.get(url).then(response => response.data).then(json => {
+      console.log('This is the home page movies');
+      console.log(json);
       this.setState({
         frontPageMovies: json.data
       });
@@ -41787,6 +41789,7 @@ class Home extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
 
   render() {
     var popularGenres = Object.keys(this.state.frontPageMovies);
+    var limit = 7;
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       id: "home-page",
       className: "container"
@@ -41805,18 +41808,20 @@ class Home extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
         to: "/catalog"
       }, "View all")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "videos"
-      }, this.state.frontPageMovies[genre].map(value => {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "video"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-          to: "/movie/".concat(value.id)
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          src: value.poster_location
-        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-          to: "/movie/".concat(value.id)
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "video-title"
-        }, value.title)));
+      }, this.state.frontPageMovies[genre].map((value, index) => {
+        if (index < limit) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "video"
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+            to: "/movie/".concat(value.id)
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+            src: value.poster_location
+          })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+            to: "/movie/".concat(value.id)
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "video-title"
+          }, value.title)));
+        }
       })));
     })));
   }

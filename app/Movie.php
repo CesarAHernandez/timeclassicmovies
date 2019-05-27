@@ -12,7 +12,7 @@ class Movie extends Model
     ];
     protected $guarded = array();
 
-    public function genres(){
+    public function genre(){
         return $this->belongsToMany('App\Genre');
     }
 }

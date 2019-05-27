@@ -16,12 +16,15 @@ class Home extends React.Component {
             .get(url)
             .then(response => response.data)
             .then(json => {
+                console.log('This is the home page movies');
+                console.log(json);
                 this.setState({ frontPageMovies: json.data });
             });
     }
 
     render() {
         var popularGenres = Object.keys(this.state.frontPageMovies);
+        var limit = 7;
         return (
             <div id="home-page" className="container">
                 <div className="hero">
@@ -36,17 +39,19 @@ class Home extends React.Component {
                                     <Link to="/catalog">View all</Link>
                                 </div>
                                 <div className="videos">
-                                    {this.state.frontPageMovies[genre].map(value => {
-                                        return (
-                                            <div className="video">
-                                                <Link to={`/movie/${value.id}`}>
-                                                    <img src={value.poster_location} />
-                                                </Link>
-                                                <Link to={`/movie/${value.id}`}>
-                                                    <div className="video-title">{value.title}</div>
-                                                </Link>
-                                            </div>
-                                        );
+                                    {this.state.frontPageMovies[genre].map((value, index) => {
+                                        if (index < limit) {
+                                            return (
+                                                <div className="video">
+                                                    <Link to={`/movie/${value.id}`}>
+                                                        <img src={value.poster_location} />
+                                                    </Link>
+                                                    <Link to={`/movie/${value.id}`}>
+                                                        <div className="video-title">{value.title}</div>
+                                                    </Link>
+                                                </div>
+                                            );
+                                        }
                                     })}
                                 </div>
                             </div>

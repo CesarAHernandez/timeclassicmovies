@@ -40,18 +40,18 @@ class MovieController extends Controller
     public function sortedByGenre(Request $request){
 
         //Getting the movies sorted my genre
-        $movies = DB::select('SELECT movies.*, genre.genre FROM movies JOIN genre ON genre.movieId = movies.id INNER JOIN (SELECT genre.genre FROM genre GROUP BY genre.genre ORDER BY `genre`.`genre` ASC	LIMIT 5) as v2 ON genre.genre = v2.genre');
-        $formatedMovies = [];
-        // Sorting the array
-        for($i =0; $i < sizeof($movies); $i++ ){
-            $formatedMovies[$movies[$i]->genre][] = $movies[$i];
+        // $movies = DB::select('SELECT movies.*, genre.genre FROM movies JOIN genre ON genre.movieId = movies.id INNER JOIN (SELECT genre.genre FROM genre GROUP BY genre.genre ORDER BY `genre`.`genre` ASC	LIMIT 5) as v2 ON genre.genre = v2.genre');
+        $movies = Movie::all();
+        $formatedMovie = [];
+
+        foreach($movies as $movie){
+            foreach($movie->genre as $genre){
+                $formatedMovie[$genre->genre][] = $movie;
+            }
         }
-        $response = ['success' => true, 'data' => $formatedMovies ];
+        // Sorting the array
+
+        $response = ['success' => true, 'data' => $formatedMovie ];
         return response()->json($response, 201);
     }
-//     SELECT movies.*, genre FROM movies JOIN genre ON genre.movieId = movies.id WHERE genre in (SELECT genre
-// FROM genre
-// GROUP BY genre
-// ORDER BY COUNT(genre) DESC
-// LIMIT 5)
 }

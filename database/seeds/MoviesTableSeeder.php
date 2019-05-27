@@ -14,16 +14,16 @@ class MoviesTableSeeder extends Seeder
     public function run()
     {
         //
-        for($i=0; $i < 100; $i++){
-            DB::table('movies')->insert([
-                'title' => Str::random(10),
-                'synopsis' => Str::random(80),
-                'released_year' => random_int(1900, 1960),
-                'imdb_url' => Str::random(10),
-                's3_location' => Str::random(10),
-                'poster_location' => 'http://emblemsbattlefield.com/uploads/posts/2014/10/facebook-default-photo-male_1.jpg',
-                'isRestricted' => 0,
-            ]);
-        }
+        $this->call([GenreSeeder::class]);
+        factory(App\Movie::class, 300)->create();
+
+        $genres = App\Genre::all();
+
+        App\Movie::all()->each(function ($movie) use ($genres) {
+            $movie->genres()->attach(
+                $genres->random(rand(1,11))->pluck('id')->toArray()
+            );
+        });
+
     }
 }

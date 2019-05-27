@@ -13,11 +13,10 @@ class CreateGenreTable extends Migration
      */
     public function up()
     {
-        Schema::create('genre', function (Blueprint $table) {
-            $table->bigInteger('movieId')->unsigned();
+        Schema::create('genres', function (Blueprint $table) {
+            $table->bigIncrements('id')->unsigned();
             $table->string('genre');
-            $table->primary(['movieId', 'genre']);
-            $table->foreign('movieId')->references('id')->on('movies');
+            $table->longText('description');
         });
     }
 
@@ -28,6 +27,6 @@ class CreateGenreTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('genre');
+        Schema::dropIfExists('genres');
     }
 }
