@@ -14,10 +14,7 @@ const Search = () => {
             })
             .then(response => {
                 const movies = response.data.data;
-                console.log(movies);
                 setSearchResults(movies);
-                console.log('this is the resurts');
-                console.log(searchResults);
             });
     };
 

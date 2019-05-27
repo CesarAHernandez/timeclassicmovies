@@ -240,6 +240,28 @@
 #catalog-page.container .grid .video {
   justify-self: center;
 }
+#catalog-page.container .pagination-container {
+  width: 300px;
+  margin: 0 auto;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr;
+}
+#catalog-page.container .pagination-container .pagination {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#catalog-page.container .pagination-container .pagination .number {
+  width: 25px;
+  height: 17px;
+  border: 2px black solid;
+  text-align: center;
+  background: whitesmoke;
+}
+#catalog-page.container .pagination-container .pagination .number.currentPage {
+  border-color: red;
+}
 
 #membership-page.container .content {
   display: flex;
@@ -271,7 +293,7 @@ body {
 }
 
 a {
-  color: #5B2E9B;
+  color: #5b2e9b;
 }
 
 input {
@@ -304,6 +326,8 @@ input {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
+  padding-bottom: 2rem;
+  position: relative;
 }
 
 #nav-bar {
@@ -328,4 +352,12 @@ input {
 }
 #nav-bar .menu a:hover {
   color: red;
+}
+
+#footer {
+  display: absolute;
+  bottom: 0;
+  width: 100%;
+  background: #e0c9ad;
+  height: 200px;
 }

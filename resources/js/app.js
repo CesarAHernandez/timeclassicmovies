@@ -13,6 +13,7 @@ import SingleMovie from './components/SingleMovie';
 import Navigation from './components/Navigation';
 import Catalog from './components/Catalog';
 import Membership from './components/Membership';
+import Footer from './components/Footer';
 
 class App extends Component {
     state = {
@@ -29,10 +30,6 @@ class App extends Component {
 
         axios
             .post('http://localhost/api/user/login/', formData)
-            .then(response => {
-                console.log(response);
-                return response;
-            })
             .then(json => {
                 if (json.data.success) {
                     alert('Login Successful!');
@@ -151,7 +148,6 @@ class App extends Component {
                     <Navigation isLoggedIn={this.state.isLoggedIn} logoutUser={this._logoutUser} />
                     <Switch>
                         <Route path="/" render={props => <Home {...props} logoutUser={this._logoutUser} />} exact />
-
                         <Route path="/about" component={About} />
                         <Route path="/login" render={props => <Login {...props} loginUser={this._loginUser} />} />
                         <Route path="/register" render={props => <Register {...props} registerUser={this._registerUser} />} />
@@ -160,6 +156,7 @@ class App extends Component {
                         <Route path="/membership" component={Membership} />
                         <Route component={ErrorPage} />
                     </Switch>
+                    <Footer />
                 </div>
             </BrowserRouter>
         );

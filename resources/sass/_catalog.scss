@@ -47,4 +47,26 @@
             justify-self: center;
         }
     }
+    .pagination-container {
+        width: 300px;
+        margin: 0 auto;
+        display: grid;
+        align-items: center;
+        grid-template-columns: 1fr;
+        .pagination {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            .number {
+                width: 25px;
+                height: 17px;
+                border: 2px black solid;
+                text-align: center;
+                background: whitesmoke;
+                &.currentPage {
+                    border-color: red;
+                }
+            }
+        }
+    }
 }

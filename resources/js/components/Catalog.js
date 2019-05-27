@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import Search from './Search';
+import Pagination from './Pagination';
 
 export default class Catalog extends Component {
     state = {
-        movies: []
+        movies: [],
+        currentPage: 0
     };
     componentDidMount() {
         axios
@@ -20,6 +22,11 @@ export default class Catalog extends Component {
                 });
             });
     }
+    setPage = e => {
+        this.setState({
+            currentPage: Number(e.target.getAttribute('value'))
+        });
+    };
     render() {
         var { movies } = this.state;
         return (
@@ -30,15 +37,20 @@ export default class Catalog extends Component {
                 </div>
                 <div className="grid">
                     {movies.map((movie, index) => {
-                        return (
-                            <div className="video" key={index}>
-                                <Link to={`/movie/${movie.id}`}>
-                                    <img src={movie.poster_location} />
-                                </Link>
-                                <div className="video-title">{movie.title}</div>
-                            </div>
-                        );
+                        if (index > this.state.currentPage * 30 && index < (this.state.currentPage + 1) * 30) {
+                            return (
+                                <div className="video" key={index}>
+                                    <Link to={`/movie/${movie.id}`}>
+                                        <img src={movie.poster_location} />
+                                    </Link>
+                                    <div className="video-title">{movie.title}</div>
+                                </div>
+                            );
+                        }
                     })}
+                </div>
+                <div className="pagination-container">
+                    <Pagination setPage={this.setPage} movies={this.state.movies} currentPage={this.state.currentPage} />
                 </div>
             </div>
         );

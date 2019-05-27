@@ -41380,9 +41380,9 @@ module.exports = g;
 
 /***/ }),
 
-/***/ "./resources/js/app.js":
+/***/ "./resources/js/App.js":
 /*!*****************************!*\
-  !*** ./resources/js/app.js ***!
+  !*** ./resources/js/App.js ***!
   \*****************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -41407,7 +41407,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Navigation__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/Navigation */ "./resources/js/components/Navigation.js");
 /* harmony import */ var _components_Catalog__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/Catalog */ "./resources/js/components/Catalog.js");
 /* harmony import */ var _components_Membership__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/Membership */ "./resources/js/components/Membership.js");
+/* harmony import */ var _components_Footer__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/Footer */ "./resources/js/components/Footer.js");
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
 
 
 
@@ -41437,10 +41439,7 @@ class App extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       var formData = new FormData();
       formData.append('email', email);
       formData.append('password', password);
-      axios__WEBPACK_IMPORTED_MODULE_4___default.a.post('http://localhost/api/user/login/', formData).then(response => {
-        console.log(response);
-        return response;
-      }).then(json => {
+      axios__WEBPACK_IMPORTED_MODULE_4___default.a.post('http://localhost/api/user/login/', formData).then(json => {
         if (json.data.success) {
           alert('Login Successful!');
           let userData = {
@@ -41578,7 +41577,7 @@ class App extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       component: _components_Membership__WEBPACK_IMPORTED_MODULE_13__["default"]
     }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
       component: _components_ErrorPage__WEBPACK_IMPORTED_MODULE_7__["default"]
-    }))));
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Footer__WEBPACK_IMPORTED_MODULE_14__["default"], null)));
   }
 
 }
@@ -41631,6 +41630,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _Search__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Search */ "./resources/js/components/Search.js");
+/* harmony import */ var _Pagination__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Pagination */ "./resources/js/components/Pagination.js");
+
 
 
 
@@ -41639,7 +41640,14 @@ class Catalog extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
   constructor() {
     super(...arguments);
     this.state = {
-      movies: []
+      movies: [],
+      currentPage: 0
+    };
+
+    this.setPage = e => {
+      this.setState({
+        currentPage: Number(e.target.getAttribute('value'))
+      });
     };
   }
 
@@ -41663,16 +41671,24 @@ class Catalog extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Search__WEBPACK_IMPORTED_MODULE_3__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "grid"
     }, movies.map((movie, index) => {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "video",
-        key: index
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/movie/".concat(movie.id)
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: movie.poster_location
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "video-title"
-      }, movie.title));
+      if (index > this.state.currentPage * 30 && index < (this.state.currentPage + 1) * 30) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "video",
+          key: index
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+          to: "/movie/".concat(movie.id)
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: movie.poster_location
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "video-title"
+        }, movie.title));
+      }
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "pagination-container"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Pagination__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      setPage: this.setPage,
+      movies: this.state.movies,
+      currentPage: this.state.currentPage
     })));
   }
 
@@ -41701,6 +41717,31 @@ class ErrorPage extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
   }
 
 }
+
+/***/ }),
+
+/***/ "./resources/js/components/Footer.js":
+/*!*******************************************!*\
+  !*** ./resources/js/components/Footer.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+
+const Footer = () => {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", {
+    id: "footer"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "This is the main page"));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Footer);
 
 /***/ }),
 
@@ -41744,7 +41785,6 @@ class Home extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
 
   render() {
     var popularGenres = Object.keys(this.state.frontPageMovies);
-    console.log(this.state);
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       id: "home-page",
       className: "container"
@@ -41971,6 +42011,59 @@ class Navigation extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
 
 /***/ }),
 
+/***/ "./resources/js/components/Pagination.js":
+/*!***********************************************!*\
+  !*** ./resources/js/components/Pagination.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+const Pagination = (_ref) => {
+  let currentPage = _ref.currentPage,
+      movies = _ref.movies,
+      setPage = _ref.setPage;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "pagination"
+  }, currentPage !== 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "number",
+    value: 0,
+    onClick: setPage
+  }, "first") : '', currentPage > 1 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "number",
+    value: currentPage - 2,
+    onClick: setPage
+  }, currentPage - 1) : '', currentPage > 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "number",
+    value: currentPage - 1,
+    onClick: setPage
+  }, currentPage) : '', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "number currentPage",
+    value: currentPage
+  }, currentPage + 1), currentPage < Math.ceil(movies.length / 30) - 1 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "number",
+    value: currentPage + 1,
+    onClick: setPage
+  }, currentPage + 2) : '', currentPage < Math.ceil(movies.length / 30) - 2 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "number",
+    value: currentPage + 2,
+    onClick: setPage
+  }, currentPage + 3) : '', currentPage < Math.ceil(movies.length / 30) - 1 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "number",
+    value: Math.ceil(movies.length / 30) - 1,
+    onClick: setPage
+  }, "last") : '');
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Pagination);
+
+/***/ }),
+
 /***/ "./resources/js/components/Register.js":
 /*!*********************************************!*\
   !*** ./resources/js/components/Register.js ***!
@@ -42151,10 +42244,7 @@ const Search = () => {
       query: _query.value
     }).then(response => {
       const movies = response.data.data;
-      console.log(movies);
       setSearchResults(movies);
-      console.log('this is the resurts');
-      console.log(searchResults);
     });
   };
 
@@ -42284,12 +42374,12 @@ const SingleMovie = (_ref) => {
 
 /***/ 0:
 /*!*************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
+  !*** multi ./resources/js/App.js ./resources/sass/app.scss ***!
   \*************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/cesarhernandez/OneDrive/Projects/php/time-classic-movies/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/cesarhernandez/OneDrive/Projects/php/time-classic-movies/resources/js/App.js */"./resources/js/App.js");
 module.exports = __webpack_require__(/*! /Users/cesarhernandez/OneDrive/Projects/php/time-classic-movies/resources/sass/app.scss */"./resources/sass/app.scss");
 
 

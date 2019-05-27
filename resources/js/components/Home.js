@@ -22,7 +22,6 @@ class Home extends React.Component {
 
     render() {
         var popularGenres = Object.keys(this.state.frontPageMovies);
-        console.log(this.state);
         return (
             <div id="home-page" className="container">
                 <div className="hero">

@@ -48,6 +48,8 @@ input {
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
+    padding-bottom: 2rem;
+    position: relative;
 }
 #nav-bar {
     display: flex;
@@ -73,4 +75,11 @@ input {
             }
         }
     }
+}
+#footer {
+    display: absolute;
+    bottom: 0;
+    width: 100%;
+    background: $footer-color;
+    height: 200px;
 }
