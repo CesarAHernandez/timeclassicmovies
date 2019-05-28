@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Video from '../components/Video';
 
@@ -7,6 +8,7 @@ const SingleMovie = ({ match }) => {
         title: '',
         poster_location: '',
         synopsis: '',
+        genres: [],
         hours: 0,
         minutes: 0
     });
@@ -20,10 +22,12 @@ const SingleMovie = ({ match }) => {
             .then(json => {
                 const movie = json.data;
                 //setting the movie state to the movie that we got from the database
+                console.log(movie);
                 setMovieInfo({
                     title: movie.title,
                     poster_location: movie.poster_location,
                     synopsis: movie.synopsis,
+                    genres: movie.genre,
                     hours: 0,
                     minutes: 0
                 });
@@ -53,6 +57,15 @@ const SingleMovie = ({ match }) => {
                     </span>
                     <span className="video-rating">4/5 Stars</span>
                     <span className="video-synopsis">{movieInfo.synopsis}</span>
+                    <div className="genres">
+                        {movieInfo.genres.map(genre => {
+                            return (
+                                <Link to={`/movie/genre/${genre.genre}`}>
+                                    <span className="genre">{genre.genre}</span>
+                                </Link>
+                            );
+                        })}
+                    </div>
                 </div>
             </div>
         </div>

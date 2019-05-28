@@ -20,7 +20,8 @@ class MovieController extends Controller
     public function one(Request $request, $id){
 
         // only getting the movie from a specific id
-         $movie = \App\Movie::where('id', $id)->get()->first();
+         $movie = \App\Movie::find($id);
+         $movie->genre;
 
          $response = ['success' => true, 'data' => $movie];
          return response()->json($response, 201);
@@ -52,6 +53,13 @@ class MovieController extends Controller
         // Sorting the array
 
         $response = ['success' => true, 'data' => $formatedMovie ];
+        return response()->json($response, 201);
+    }
+    public function findByGenre(Request $request, $genre){
+        $movies = \App\Movie::whereHas('genre', function($query) use ($genre){
+            $query->where('genre', '=', $genre);
+        })->get();
+        $response = ['success' => true, 'data' => $movies ];
         return response()->json($response, 201);
     }
 }

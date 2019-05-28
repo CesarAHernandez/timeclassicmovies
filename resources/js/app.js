@@ -13,8 +13,8 @@ import SingleMovie from './components/SingleMovie';
 import Navigation from './components/Navigation';
 import Catalog from './components/Catalog';
 import Membership from './components/Membership';
-import Video from './components/Video';
 import Footer from './components/Footer';
+import GenreList from './components/GenreList';
 
 class App extends Component {
     state = {
@@ -153,8 +153,9 @@ class App extends Component {
                         <Route path="/login" render={props => <Login {...props} loginUser={this._loginUser} />} />
                         <Route path="/register" render={props => <Register {...props} registerUser={this._registerUser} />} />
                         <Route path="/catalog" component={Catalog} />
-                        <Route path="/movie/:id" component={SingleMovie} />
+                        <Route path="/movie/:id" component={SingleMovie} exact />
                         <Route path="/membership" component={Membership} />
+                        <Route path="/movie/genre/:genre" component={GenreList} />
                         <Route component={ErrorPage} />
                     </Switch>
                     <Footer />
