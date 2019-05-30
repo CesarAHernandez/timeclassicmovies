@@ -41871,9 +41871,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 
 
- // frontPageMovies = {
-//     action : ['movie1', 'movie12']
-// }
+
 
 class Home extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
   constructor() {
@@ -41885,9 +41883,10 @@ class Home extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
   }
 
   componentDidMount() {
-    var url = '/api/movies/sortedByGenre';
-    axios__WEBPACK_IMPORTED_MODULE_2___default.a.get(url).then(response => response.data).then(json => {
-      console.log('This is the home page movies');
+    var url = '/api/movies/filteredByGenre';
+    axios__WEBPACK_IMPORTED_MODULE_2___default.a.get(url).then(response => {
+      return response.data;
+    }).then(json => {
       console.log(json);
       this.setState({
         frontPageMovies: json.data
@@ -41907,18 +41906,20 @@ class Home extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
       src: "https://i.pinimg.com/originals/3a/a7/29/3aa729e58ccc5ade93239ff883235551.jpg"
     })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "film-section"
-    }, popularGenres.map(genre => {
+    }, popularGenres.map((genre, index) => {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        key: index,
         className: "genre-section"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "genre"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, genre), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/catalog"
+        to: "/movie/genre/".concat(genre)
       }, "View all")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "videos"
       }, this.state.frontPageMovies[genre].map((value, index) => {
         if (index < limit) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            key: index,
             className: "video"
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
             to: "/movie/".concat(value.id)

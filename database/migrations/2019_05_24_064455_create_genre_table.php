@@ -17,6 +17,7 @@ class CreateGenreTable extends Migration
             $table->bigIncrements('id')->unsigned();
             $table->string('genre');
             $table->longText('description');
+            $table->index(['id']);
         });
     }
 

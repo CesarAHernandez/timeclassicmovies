@@ -15,13 +15,14 @@ class MoviesTableSeeder extends Seeder
     {
         //
         $this->call([GenreSeeder::class]);
-        factory(App\Movie::class, 300)->create();
+        factory(App\Movie::class, 1300)->create();
 
         $genres = App\Genre::all();
 
         App\Movie::all()->each(function ($movie) use ($genres) {
-            $movie->genres()->attach(
-                $genres->random(rand(1,11))->pluck('id')->toArray()
+            Log::debug($genres->random(rand(1,11))->pluck('id')->toArray());
+            $movie->genre()->attach(
+                $genres->random(rand(1,4))->pluck('id')->toArray()
             );
         });
 

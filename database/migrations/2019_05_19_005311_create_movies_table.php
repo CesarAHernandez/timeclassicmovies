@@ -23,6 +23,8 @@ class CreateMoviesTable extends Migration
             $table->string('poster_location', 100);
             $table->boolean('isRestricted');
             $table->timestamps();
+
+            $table->index(['id']);
         });
     }
 
