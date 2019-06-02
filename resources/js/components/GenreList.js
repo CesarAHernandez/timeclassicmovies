@@ -1,21 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import GridView from './GridView';
 
 import axios from 'axios';
 
 const GenreList = ({ match }) => {
-    const [genre, setGenre] = useState(null);
     const [movies, setMovies] = useState([]);
 
     useEffect(() => {
-        var url = `/api/movie/genre/${match.params.genre}`;
-        console.log(url);
+        var url = `/api/movie/${match.params.category}/${match.params.slug}`;
         axios
             .get(url)
             .then(response => response.data)
             .then(json => {
                 setMovies(json.data);
+                console.log(json.data);
             });
     }, []);
     return (

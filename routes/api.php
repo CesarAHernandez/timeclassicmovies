@@ -13,22 +13,25 @@ use Illuminate\Support\Facades\Log;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::group(['middleware' => ['jwt.auth', 'api-header']], function(){
-    Route::get('users/list', 'UserController@list');
+// Protected routes go in here 
+Route::group(['middleware' => ['auth:api']], function(){
+    Route::get('/user',function (Request $request) {
+        return $request->user();
+    });
 });
 
 Route::group(['middleware' => 'api-header'], function(){
     Route::post('user/login', 'UserController@login');
     Route::post('user/register', 'UserController@register');
 
+    Route::post('/register', 'Api\AuthController@register');
+    Route::post('/login', 'Api\AuthController@login');
+
     Route::get('movies/filteredByGenre', 'MovieController@filteredByGenre');
     Route::get('movies/list','MovieController@list');
     Route::get('movie/{id}','MovieController@one');
     Route::get('movie/genre/{genre}', 'MovieController@findByGenre');
+    Route::get('movie/star/{slug}', 'MovieController@findByStar');
+    Route::get('movie/director/{slug}', 'MovieController@findByDirector');
     Route::post('movie/search', 'MovieController@search');
 });

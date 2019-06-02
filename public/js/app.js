@@ -41579,7 +41579,7 @@ class App extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       path: "/membership",
       component: _components_Membership__WEBPACK_IMPORTED_MODULE_13__["default"]
     }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-      path: "/movie/genre/:genre",
+      path: "/movie/:category/:slug",
       component: _components_GenreList__WEBPACK_IMPORTED_MODULE_15__["default"]
     }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
       component: _components_ErrorPage__WEBPACK_IMPORTED_MODULE_7__["default"]
@@ -41733,10 +41733,9 @@ const Footer = () => {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _GridView__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./GridView */ "./resources/js/components/GridView.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _GridView__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./GridView */ "./resources/js/components/GridView.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -41749,31 +41748,25 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
 const GenreList = (_ref) => {
   let match = _ref.match;
 
-  const _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
+  const _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
         _useState2 = _slicedToArray(_useState, 2),
-        genre = _useState2[0],
-        setGenre = _useState2[1];
-
-  const _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
-        _useState4 = _slicedToArray(_useState3, 2),
-        movies = _useState4[0],
-        setMovies = _useState4[1];
+        movies = _useState2[0],
+        setMovies = _useState2[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
-    var url = "/api/movie/genre/".concat(match.params.genre);
-    console.log(url);
-    axios__WEBPACK_IMPORTED_MODULE_3___default.a.get(url).then(response => response.data).then(json => {
+    var url = "/api/movie/".concat(match.params.category, "/").concat(match.params.slug);
+    axios__WEBPACK_IMPORTED_MODULE_2___default.a.get(url).then(response => response.data).then(json => {
       setMovies(json.data);
+      console.log(json.data);
     });
   }, []);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "genre-list-page",
     className: "container"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, match.params.genre), movies.length > 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GridView__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, match.params.genre), movies.length > 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GridView__WEBPACK_IMPORTED_MODULE_1__["default"], {
     movies: movies
   }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "loading"
@@ -42442,6 +42435,8 @@ const SingleMovie = (_ref) => {
         poster_location: movie.poster_location,
         synopsis: movie.synopsis,
         genres: movie.genre,
+        directors: movie.director,
+        stars: movie.star,
         hours: 0,
         minutes: 0
       });
@@ -42452,6 +42447,7 @@ const SingleMovie = (_ref) => {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " Loading... ");
   }
 
+  console.log(movieInfo);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "singleMovie-page",
     className: "container"
@@ -42483,6 +42479,22 @@ const SingleMovie = (_ref) => {
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: "genre"
     }, genre.genre));
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "stars"
+  }, movieInfo.stars.map(star => {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      to: "/movie/star/".concat(star.slug)
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "star"
+    }, star.name));
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "directors"
+  }, movieInfo.directors.map(director => {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      to: "/movie/director/".concat(director.slug)
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "director"
+    }, director.name));
   })))));
 };
 
@@ -42577,8 +42589,8 @@ const Video = () => {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/cesarhernandez/OneDrive/Projects/php/time-classic-movies/resources/js/App.js */"./resources/js/App.js");
-module.exports = __webpack_require__(/*! /Users/cesarhernandez/OneDrive/Projects/php/time-classic-movies/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\tinh5\OneDrive\Documents\Projects\php\time-classic-movies\resources\js\App.js */"./resources/js/App.js");
+module.exports = __webpack_require__(/*! C:\Users\tinh5\OneDrive\Documents\Projects\php\time-classic-movies\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

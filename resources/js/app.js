@@ -155,7 +155,7 @@ class App extends Component {
                         <Route path="/catalog" component={Catalog} />
                         <Route path="/movie/:id" component={SingleMovie} exact />
                         <Route path="/membership" component={Membership} />
-                        <Route path="/movie/genre/:genre" component={GenreList} />
+                        <Route path="/movie/:category/:slug" component={GenreList} />
                         <Route component={ErrorPage} />
                     </Switch>
                     <Footer />

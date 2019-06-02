@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Movie;
 use App\Genre;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -25,11 +26,10 @@ class MovieController extends Controller
     public function one(Request $request, $id){
 
         // only getting the movie from a specific id
-         $movie = \App\Movie::find($id);
-         $movie->genre;
-
-         $response = ['success' => true, 'data' => $movie];
-         return response()->json($response, 201);
+        $movie = \App\Movie::with(['genre','director','star'])->find($id);
+        // $movie = \App\Movie::find($id);
+        $response = ['success' => true, 'data' => $movie];
+        return response()->json($response, 201);
     }
 
     public function filteredByGenre(Request $request){
@@ -60,24 +60,24 @@ class MovieController extends Controller
       $response = ['success' => true, 'data' => $movie];
       return response()->json($response, 201);
     }
-    public function sortedByGenre(Request $request){
-
-        $movies = Movie::all();
-        $formatedMovie = [];
-
-        foreach($movies as $movie){
-            foreach($movie->genre as $genre){
-                $formatedMovie[$genre->genre][] = $movie;
-            }
-        }
-        // Sorting the array
-
-        $response = ['success' => true, 'data' => $formatedMovie ];
-        return response()->json($response, 201);
-    }
+    // TODO: find a more general way of doing this
     public function findByGenre(Request $request, $genre){
         $movies = \App\Movie::whereHas('genre', function($query) use ($genre){
             $query->where('genre', '=', $genre);
+        })->get();
+        $response = ['success' => true, 'data' => $movies ];
+        return response()->json($response, 201);
+    }
+    public function findByStar(Request $request, $slug){
+        $movies = \App\Movie::whereHas('star', function($query) use ($slug){
+            $query->where('slug', '=', $slug);
+        })->get();
+        $response = ['success' => true, 'data' => $movies ];
+        return response()->json($response, 201);
+    }
+    public function findByDirector(Request $request, $slug){
+        $movies = \App\Movie::whereHas('director', function($query) use ($slug){
+            $query->where('slug', '=', $slug);
         })->get();
         $response = ['success' => true, 'data' => $movies ];
         return response()->json($response, 201);

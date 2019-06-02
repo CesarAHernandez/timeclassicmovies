@@ -28,6 +28,8 @@ const SingleMovie = ({ match }) => {
                     poster_location: movie.poster_location,
                     synopsis: movie.synopsis,
                     genres: movie.genre,
+                    directors: movie.director,
+                    stars: movie.star,
                     hours: 0,
                     minutes: 0
                 });
@@ -37,6 +39,7 @@ const SingleMovie = ({ match }) => {
     if (movieInfo.title.length === 0) {
         return <div> Loading... </div>;
     }
+    console.log(movieInfo);
 
     return (
         <div id="singleMovie-page" className="container">
@@ -62,6 +65,24 @@ const SingleMovie = ({ match }) => {
                             return (
                                 <Link to={`/movie/genre/${genre.genre}`}>
                                     <span className="genre">{genre.genre}</span>
+                                </Link>
+                            );
+                        })}
+                    </div>
+                    <div className="stars">
+                        {movieInfo.stars.map(star => {
+                            return (
+                                <Link to={`/movie/star/${star.slug}`}>
+                                    <span className="star">{star.name}</span>
+                                </Link>
+                            );
+                        })}
+                    </div>
+                    <div className="directors">
+                        {movieInfo.directors.map(director => {
+                            return (
+                                <Link to={`/movie/director/${director.slug}`}>
+                                    <span className="director">{director.name}</span>
                                 </Link>
                             );
                         })}

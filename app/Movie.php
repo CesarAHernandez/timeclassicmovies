@@ -15,4 +15,10 @@ class Movie extends Model
     public function genre(){
         return $this->belongsToMany('App\Genre');
     }
+    public function star(){
+        return $this->belongsToMany('App\Star');
+    }
+    public function director(){
+        return $this->belongsToMany('App\Director');
+    }
 }
