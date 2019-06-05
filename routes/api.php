@@ -27,6 +27,9 @@ Route::group(['middleware' => 'api-header'], function(){
     Route::post('/register', 'Api\AuthController@register');
     Route::post('/login', 'Api\AuthController@login');
 
+    Route::get('login/github', 'Api\SocialAuthController@redirectToProvider');
+    Route::get('login/github/callback', 'Api\SocialAuthController@handleProviderCallback');
+
     Route::get('movies/filteredByGenre', 'MovieController@filteredByGenre');
     Route::get('movies/list','MovieController@list');
     Route::get('movie/{id}','MovieController@one');
