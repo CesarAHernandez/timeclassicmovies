@@ -150,7 +150,7 @@ class App extends Component {
                     <Switch>
                         <Route path="/" render={props => <Home {...props} logoutUser={this._logoutUser} />} exact />
                         <Route path="/about" component={About} />
-                        <Route path="/login" render={props => <Login {...props} loginUser={this._loginUser} />} />
+                        <Route path="/login" render={props => <Login {...props} loginUser={this._loginUser} />} exact />
                         <Route path="/register" render={props => <Register {...props} registerUser={this._registerUser} />} />
                         <Route path="/catalog" component={Catalog} />
                         <Route path="/movie/:id" component={SingleMovie} exact />

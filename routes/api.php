@@ -20,15 +20,16 @@ Route::group(['middleware' => ['auth:api']], function(){
     });
 });
 
-Route::group(['middleware' => 'api-header'], function(){
+Route::group(['middleware' => ['api-header']], function(){
     Route::post('user/login', 'UserController@login');
     Route::post('user/register', 'UserController@register');
 
     Route::post('/register', 'Api\AuthController@register');
     Route::post('/login', 'Api\AuthController@login');
 
-    Route::get('login/github', 'Api\SocialAuthController@redirectToProvider');
-    Route::get('login/github/callback', 'Api\SocialAuthController@handleProviderCallback');
+
+    Route::get('login/google', 'Api\SocialAuthController@redirectToProvider');
+    Route::get('login/google/callback', 'Api\SocialAuthController@handleProviderCallback');
 
     Route::get('movies/filteredByGenre', 'MovieController@filteredByGenre');
     Route::get('movies/list','MovieController@list');

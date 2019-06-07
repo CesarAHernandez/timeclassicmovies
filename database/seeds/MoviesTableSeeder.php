@@ -30,7 +30,6 @@ class MoviesTableSeeder extends Seeder
         });
 
         App\Movie::all()->each(function ($movie) use ($directors){
-            Log::debug($directors->random(rand(1,2))->pluck('id')->toArray());
             $movie->director()->attach(
                 $directors->random(rand(1,2))->pluck('id')->toArray()
             );

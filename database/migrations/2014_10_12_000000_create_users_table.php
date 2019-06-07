@@ -17,9 +17,10 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('google_id')->default('');
             $table->timestamp('email_verified_at')->nullable();
             // $table->mediumText('auth_token');
-            $table->string('password');
+            $table->string('password')->default('');
             $table->rememberToken();
             $table->timestamps();
         });

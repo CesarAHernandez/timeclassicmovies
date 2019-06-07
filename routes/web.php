@@ -15,3 +15,4 @@ Route::get('/{path?}',[
     'as' => 'react',
     'where' => ['path' => '.*']
 ]);
+

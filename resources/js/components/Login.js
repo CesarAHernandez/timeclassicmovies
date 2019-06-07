@@ -44,6 +44,7 @@ const Login = ({ history, loginUser = f => f }) => {
                     <button type="submit" id="email-login-btn" href="#facebook">
                         Login
                     </button>
+                    <a href="/api/login/google">Login with GOOGLE</a>
                     <Link to="/register" className="register-btn">
                         Register
                     </Link>

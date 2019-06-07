@@ -41562,7 +41562,8 @@ class App extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       path: "/login",
       render: props => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Login__WEBPACK_IMPORTED_MODULE_8__["default"], _extends({}, props, {
         loginUser: this._loginUser
-      }))
+      })),
+      exact: true
     }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
       path: "/register",
       render: props => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Register__WEBPACK_IMPORTED_MODULE_9__["default"], _extends({}, props, {
@@ -42004,7 +42005,9 @@ const Login = (_ref) => {
     type: "submit",
     id: "email-login-btn",
     href: "#facebook"
-  }, "Login"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  }, "Login"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "/api/login/google"
+  }, "Login with GOOGLE"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/register",
     className: "register-btn"
   }, "Register"))));
