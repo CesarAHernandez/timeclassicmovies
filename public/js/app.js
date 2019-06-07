@@ -42018,6 +42018,9 @@ const Login = (_ref) => {
     }
 
     console.log(e.data);
+    localStorage.setItem('token', e.data.token);
+    localStorage.setItem('type', e.data.type);
+    window.location = e.data.to;
   };
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {

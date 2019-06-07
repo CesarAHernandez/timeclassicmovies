@@ -56,6 +56,11 @@ const Login = ({ history, loginUser = f => f }) => {
             return
         }
         console.log(e.data)
+        localStorage.setItem('token',e.data.token)
+        localStorage.setItem('type',e.data.type)
+        window.location = e.data.to
+
+
     }
     useEffect(() => {
         window.addEventListener('message',onMessage, false )
