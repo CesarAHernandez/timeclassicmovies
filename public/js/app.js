@@ -41947,6 +41947,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
 
 
 
@@ -41962,6 +41969,63 @@ const Login = (_ref) => {
     loginUser(_email.value, _password.value);
   };
 
+  const handleSocialLogin = e => {
+    e.preventDefault();
+    const newWindow = openWindow('', 'message');
+    axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('/api/login/google').then(response => {
+      return response.data;
+    }).then(json => {
+      newWindow.location = json.redirect;
+    });
+  };
+
+  function openWindow(url, title) {
+    let options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+
+    if (typeof url === 'object') {
+      options = url;
+      url = '';
+    }
+
+    options = _objectSpread({
+      url,
+      title,
+      width: 600,
+      height: 720
+    }, options);
+    const dualScreenLeft = window.screenLeft !== undefined ? window.screenLeft : window.screen.left;
+    const dualScreenTop = window.screenTop !== undefined ? window.screenTop : window.screen.top;
+    const width = window.innerWidth || document.documentElement.clientWidth || window.screen.width;
+    const height = window.innerHeight || document.documentElement.clientHeight || window.screen.height;
+    options.left = width / 2 - options.width / 2 + dualScreenLeft;
+    options.top = height / 2 - options.height / 2 + dualScreenTop;
+    const optionsStr = Object.keys(options).reduce((acc, key) => {
+      acc.push("".concat(key, "=").concat(options[key]));
+      return acc;
+    }, []).join(',');
+    const newWindow = window.open(url, title, optionsStr);
+
+    if (window.focus) {
+      newWindow.focus();
+    }
+
+    return newWindow;
+  }
+
+  const onMessage = e => {
+    if (e.origin !== window.origin || !e.data.token) {
+      return;
+    }
+
+    console.log(e.data);
+  };
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    window.addEventListener('message', onMessage, false);
+    return () => {
+      window.removeEventListener('message', onMessage);
+    };
+  }, []);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "login-page",
     class: "container"
@@ -42006,7 +42070,8 @@ const Login = (_ref) => {
     id: "email-login-btn",
     href: "#facebook"
   }, "Login"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "/api/login/google"
+    href: "",
+    onClick: handleSocialLogin
   }, "Login with GOOGLE"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/register",
     className: "register-btn"
@@ -42592,8 +42657,8 @@ const Video = () => {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\tinh5\OneDrive\Documents\Projects\php\time-classic-movies\resources\js\App.js */"./resources/js/App.js");
-module.exports = __webpack_require__(/*! C:\Users\tinh5\OneDrive\Documents\Projects\php\time-classic-movies\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/cesarhernandez/Projects/php/time-classic-movies/resources/js/App.js */"./resources/js/App.js");
+module.exports = __webpack_require__(/*! /Users/cesarhernandez/Projects/php/time-classic-movies/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
