@@ -41863,73 +41863,76 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
 
-class Home extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
-  constructor() {
-    super(...arguments);
-    this.state = {
-      token: localStorage['appState'] ? JSON.parse(localStorage['appState']).user.auth_token : '',
-      frontPageMovies: {}
-    };
-  }
 
-  componentDidMount() {
+const Home = () => {
+  // const [token, setToken] = useState(localStorage['appState'] ? JSON.parse(localStorage['appState']).user.auth_token : '');
+  const _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({}),
+        _useState2 = _slicedToArray(_useState, 2),
+        frontPageMovies = _useState2[0],
+        setFrontPageMovies = _useState2[1];
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
     var url = '/api/movies/filteredByGenre';
     axios__WEBPACK_IMPORTED_MODULE_2___default.a.get(url).then(response => {
       return response.data;
     }).then(json => {
-      console.log(json);
-      this.setState({
-        frontPageMovies: json.data
-      });
+      setFrontPageMovies(_objectSpread({}, json.data));
     });
-  }
-
-  render() {
-    var popularGenres = Object.keys(this.state.frontPageMovies);
-    var limit = 7;
+  }, []);
+  var popularGenres = Object.keys(frontPageMovies);
+  var limit = 7;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "home-page",
+    className: "container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "hero"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: "https://i.pinimg.com/originals/3a/a7/29/3aa729e58ccc5ade93239ff883235551.jpg"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "film-section"
+  }, popularGenres.map((genre, index) => {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      id: "home-page",
-      className: "container"
+      key: index,
+      className: "genre-section"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "hero"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-      src: "https://i.pinimg.com/originals/3a/a7/29/3aa729e58ccc5ade93239ff883235551.jpg"
-    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "film-section"
-    }, popularGenres.map((genre, index) => {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        key: index,
-        className: "genre-section"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "genre"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, genre), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/movie/genre/".concat(genre)
-      }, "View all")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "videos"
-      }, this.state.frontPageMovies[genre].map((value, index) => {
-        if (index < limit) {
-          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            key: index,
-            className: "video"
-          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-            to: "/movie/".concat(value.id)
-          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-            src: value.poster_location
-          })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-            to: "/movie/".concat(value.id)
-          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "video-title"
-          }, value.title)));
-        }
-      })));
+      className: "genre"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, genre), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      to: "/movie/genre/".concat(genre)
+    }, "View all")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "videos"
+    }, frontPageMovies[genre].map((value, index) => {
+      if (index < limit) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          key: index,
+          className: "video"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+          to: "/movie/".concat(value.id)
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: value.poster_location
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+          to: "/movie/".concat(value.id)
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "video-title"
+        }, value.title)));
+      }
     })));
-  }
-
-}
+  })));
+};
 
 /* harmony default export */ __webpack_exports__["default"] = (Home);
 
