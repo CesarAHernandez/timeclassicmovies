@@ -42105,18 +42105,21 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const styles = {
-  fontFamily: 'sans-serif',
-  textAlign: 'center'
-};
 
 class Membership extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
   constructor() {
     super(...arguments);
     this.state = {
-      token: localStorage['appState'] ? JSON.parse(localStorage['appState']).user.auth_token : '',
       users: []
     };
+  }
+
+  handleClick() {
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/subscription/one_month_free').then(response => {
+      return response.data;
+    }).then(json => {
+      console.log(json);
+    });
   }
 
   render() {
@@ -42131,13 +42134,9 @@ class Membership extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component 
       src: "https://static3.bigstockphoto.com/2/0/3/large1500/30201035.jpg"
     }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "description"
-    }, "now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "buy now")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "membership"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Gold Membership"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-      src: "https://static3.bigstockphoto.com/2/0/3/large1500/30201035.jpg"
-    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "description"
-    }, "now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "buy now"))));
+    }, "now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      onClick: this.handleClick
+    }, "buy now"))));
   }
 
 }

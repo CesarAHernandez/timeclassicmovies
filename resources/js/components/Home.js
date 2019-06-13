@@ -13,7 +13,7 @@ const Home = () => {
                 return response.data;
             })
             .then(json => {
-                setFrontPageMovies({...json.data});
+                setFrontPageMovies({ ...json.data });
             });
     }, []);
 
