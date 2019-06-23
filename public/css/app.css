@@ -224,6 +224,26 @@
   width: 60%;
 }
 
+#payment-form .StripeElement {
+  box-sizing: border-box;
+  height: 40px;
+  padding: 10px 12px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: white;
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  transition: box-shadow 150ms ease;
+}
+#payment-form .StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+#payment-form .StripeElement--invalid {
+  border-color: #fa755a;
+}
+#payment-form .StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
+
 * {
   margin: 0;
   padding: 0;

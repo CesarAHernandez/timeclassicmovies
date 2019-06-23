@@ -7,6 +7,8 @@
         <title>Time Classics</title>
         <!-- Bitmovin -->
         <script src="//cdn.bitmovin.com/player/web/8/bitmovinplayer.js"></script>
+        <!-- Stripe -->
+        <script src="https://js.stripe.com/v3/"></script>
 
         <!-- Fonts -->
         <link rel="stylesheet" href="{{asset('css/app.css')}}">

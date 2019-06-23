@@ -41867,72 +41867,76 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
 
-class Home extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
-  constructor() {
-    super(...arguments);
-    this.state = {
-      frontPageMovies: {}
-    };
-  }
 
-  componentDidMount() {
+const Home = () => {
+  // const [token, setToken] = useState(localStorage['appState'] ? JSON.parse(localStorage['appState']).user.auth_token : '');
+  const _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({}),
+        _useState2 = _slicedToArray(_useState, 2),
+        frontPageMovies = _useState2[0],
+        setFrontPageMovies = _useState2[1];
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
     var url = '/api/movies/filteredByGenre';
     axios__WEBPACK_IMPORTED_MODULE_2___default.a.get(url).then(response => {
       return response.data;
     }).then(json => {
-      console.log(json);
-      this.setState({
-        frontPageMovies: json.data
-      });
+      setFrontPageMovies(_objectSpread({}, json.data));
     });
-  }
-
-  render() {
-    var popularGenres = Object.keys(this.state.frontPageMovies);
-    var limit = 7;
+  }, []);
+  var popularGenres = Object.keys(frontPageMovies);
+  var limit = 7;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "home-page",
+    className: "container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "hero"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: "https://i.pinimg.com/originals/3a/a7/29/3aa729e58ccc5ade93239ff883235551.jpg"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "film-section"
+  }, popularGenres.map((genre, index) => {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      id: "home-page",
-      className: "container"
+      key: index,
+      className: "genre-section"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "hero"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-      src: "https://i.pinimg.com/originals/3a/a7/29/3aa729e58ccc5ade93239ff883235551.jpg"
-    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "film-section"
-    }, popularGenres.map((genre, index) => {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        key: index,
-        className: "genre-section"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "genre"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, genre), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/movie/genre/".concat(genre)
-      }, "View all")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "videos"
-      }, this.state.frontPageMovies[genre].map((value, index) => {
-        if (index < limit) {
-          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            key: index,
-            className: "video"
-          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-            to: "/movie/".concat(value.id)
-          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-            src: value.poster_location
-          })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-            to: "/movie/".concat(value.id)
-          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "video-title"
-          }, value.title)));
-        }
-      })));
+      className: "genre"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, genre), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      to: "/movie/genre/".concat(genre)
+    }, "View all")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "videos"
+    }, frontPageMovies[genre].map((value, index) => {
+      if (index < limit) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          key: index,
+          className: "video"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+          to: "/movie/".concat(value.id)
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: value.poster_location
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+          to: "/movie/".concat(value.id)
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "video-title"
+        }, value.title)));
+      }
     })));
-  }
-
-}
+  })));
+};
 
 /* harmony default export */ __webpack_exports__["default"] = (Home);
 
@@ -42104,46 +42108,77 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-const styles = {
-  fontFamily: 'sans-serif',
-  textAlign: 'center'
+
+const Membership = () => {
+  const _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(Stripe('pk_test_FakM84nEUfKPZFFI8dAEDfyf00WqcOJr8E')),
+        _useState2 = _slicedToArray(_useState, 2),
+        stripe = _useState2[0],
+        setStripe = _useState2[1];
+
+  const _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
+        _useState4 = _slicedToArray(_useState3, 2),
+        card = _useState4[0],
+        setCard = _useState4[1];
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    const elements = stripe.elements();
+    const cardElement = elements.create('card');
+    setCard(cardElement);
+    cardElement.mount('#card-element');
+  }, []);
+
+  const handleClick = e => {
+    e.preventDefault();
+    const promise = stripe.createToken(card);
+    promise.then(result => result.token).then(token => {
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/subscription/one_month_free', {
+        token: token.id
+      }).then(response => response.data).then(json => {
+        console.log(json);
+      });
+    }, reason => {
+      console.log(reason);
+    });
+  };
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "membership-page",
+    className: "container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Memberships"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "content"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "membership"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Gold Membership"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: "https://static3.bigstockphoto.com/2/0/3/large1500/30201035.jpg"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "description"
+  }, "now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: handleClick
+  }, "buy now")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    id: "payment-form"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-row"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "card-element"
+  }, "Credit or debit card"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "card-element"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "card-errors",
+    role: "alert"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: handleClick
+  }, "Submit Payment")));
 };
-
-class Membership extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
-  constructor() {
-    super(...arguments);
-    this.state = {
-      token: localStorage['appState'] ? JSON.parse(localStorage['appState']).user.auth_token : '',
-      users: []
-    };
-  }
-
-  render() {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      id: "membership-page",
-      className: "container"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Memberships"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "content"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "membership"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Gold Membership"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-      src: "https://static3.bigstockphoto.com/2/0/3/large1500/30201035.jpg"
-    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "description"
-    }, "now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "buy now")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "membership"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Gold Membership"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-      src: "https://static3.bigstockphoto.com/2/0/3/large1500/30201035.jpg"
-    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "description"
-    }, "now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "buy now"))));
-  }
-
-}
 
 /* harmony default export */ __webpack_exports__["default"] = (Membership);
 

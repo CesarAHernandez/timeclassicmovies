@@ -8,10 +8,12 @@ use Laravel\Passport\HasApiTokens;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 // This is required for jwt
 use Tymon\JWTAuth\Contracts\JWTSubject;
+// For stripe api
+use Laravel\Cashier\Billable;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use HasApiTokens, Notifiable;
+    use HasApiTokens, Notifiable, Billable;
 
     /**
      * The attributes that are mass assignable.

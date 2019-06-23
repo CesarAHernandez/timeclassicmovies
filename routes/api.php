@@ -38,4 +38,5 @@ Route::group(['middleware' => ['api-header']], function(){
     Route::get('movie/star/{slug}', 'MovieController@findByStar');
     Route::get('movie/director/{slug}', 'MovieController@findByDirector');
     Route::post('movie/search', 'MovieController@search');
+    Route::post('subscription/one_month_free', 'SubscriptionController@pay');
 });
