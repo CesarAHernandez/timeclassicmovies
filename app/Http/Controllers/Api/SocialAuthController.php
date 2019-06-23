@@ -13,15 +13,15 @@ use Socialite;
 class SocialAuthController extends Controller
 {
     //
-    public function redirectToProvider(){
+    public function redirectToProvider($provider){
         return[
-            'redirect' => Socialite::driver('google')->stateless()->redirect()->getTargetUrl()
+            'redirect' => Socialite::driver($provider)->stateless()->redirect()->getTargetUrl()
         ];
     }
 
-    public function handleProviderCallback(){
+    public function handleProviderCallback($provider){
         try {
-            $user = Socialite::driver('google')->stateless()->user();
+            $user = Socialite::driver($provider)->stateless()->user();
         } catch (\Exception $e) {
             return redirect('/login');
         }
@@ -42,6 +42,7 @@ class SocialAuthController extends Controller
             $newUser->save();
             auth()->login($newUser, true);
         }
+        //creates the token and gives it to the front end
         $token = auth()->user()->createToken('authToken')->accessToken;
         return view('callback', [
             'type' => 'bearer',

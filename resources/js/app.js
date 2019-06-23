@@ -19,7 +19,8 @@ import GenreList from './components/GenreList';
 class App extends Component {
     state = {
         isLoggedIn: false,
-        user: {}
+        token: null,
+        type: ''
     };
     _loginUser = (email, password) => {
         $('#login-form button')
@@ -47,10 +48,10 @@ class App extends Component {
                         user: userData
                     };
                     // save app state with user date in local storage
-                    localStorage['appState'] = JSON.stringify(appState);
+                    localStorage['AppData'] = JSON.stringify(appState);
                     this.setState({
                         isLoggedIn: appState.isLoggedIn,
-                        user: appState.user
+                        token: userData.auth_token
                     });
                 } else alert('Login Failed!');
 
@@ -72,13 +73,9 @@ class App extends Component {
 
         var formData = new FormData();
         formData.append('type', 'email');
-        formData.append('username', 'usernameee');
         formData.append('password', password);
-        formData.append('phone', 33322212231);
         formData.append('email', email);
-        formData.append('address', 'address okoko');
         formData.append('name', name);
-        formData.append('id', 76);
 
         axios
             .post('http://localhost/api/user/register', formData)
@@ -99,12 +96,13 @@ class App extends Component {
                     };
                     let appState = {
                         isLoggedIn: true,
-                        user: userData
+                        token: userData.auth_token
                     };
                     // save app state with user date in local storage
-                    localStorage['appState'] = JSON.stringify(appState);
+                    localStorage['AppData'] = JSON.stringify(appState);
                     this.setState({
                         isLoggedIn: appState.isLoggedIn,
+                        type: 'Bearer',
                         user: appState.user
                     });
                     // redirect home
@@ -127,18 +125,20 @@ class App extends Component {
     _logoutUser = () => {
         let appState = {
             isLoggedIn: false,
-            user: {}
+            token: null,
+            type: ''
         };
         // save app state with user date in local storage
-        localStorage['appState'] = JSON.stringify(appState);
+        localStorage['AppData'] = JSON.stringify(appState);
+        location.reload(true);
         this.setState(appState);
     };
     componentDidMount() {
-        let state = localStorage['appState'];
-        if (state) {
-            let AppState = JSON.parse(state);
-            console.log(AppState);
-            this.setState({ isLoggedIn: AppState.isLoggedIn, user: AppState });
+        if (localStorage['AppData']) {
+            let { token, isLoggedIn, type } = JSON.parse(localStorage['AppData']);
+            if (token) {
+                this.setState({ isLoggedIn, token, type });
+            }
         }
     }
 

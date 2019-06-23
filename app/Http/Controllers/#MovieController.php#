@@ -59,7 +59,8 @@ class MovieController extends Controller
 
       $response = ['success' => true, 'data' => $movie];
       return response()->json($response, 201);
-    } // TODO: find a more general way of doing this
+    }
+    // TODO: find a more general way of doing this
     public function findByGenre(Request $request, $genre){
         $movies = \App\Movie::whereHas('genre', function($query) use ($genre){
             $query->where('genre', '=', $genre);

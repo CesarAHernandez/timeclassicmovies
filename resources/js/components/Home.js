@@ -4,7 +4,6 @@ import axios from 'axios';
 
 class Home extends React.Component {
     state = {
-        token: localStorage['appState'] ? JSON.parse(localStorage['appState']).user.auth_token : '',
         frontPageMovies: {}
     };
     componentDidMount() {

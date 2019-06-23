@@ -28,8 +28,8 @@ Route::group(['middleware' => ['api-header']], function(){
     Route::post('/login', 'Api\AuthController@login');
 
 
-    Route::get('login/google', 'Api\SocialAuthController@redirectToProvider');
-    Route::get('login/google/callback', 'Api\SocialAuthController@handleProviderCallback');
+    Route::get('login/{provider}', 'Api\SocialAuthController@redirectToProvider');
+    Route::get('login/{provider}/callback', 'Api\SocialAuthController@handleProviderCallback');
 
     Route::get('movies/filteredByGenre', 'MovieController@filteredByGenre');
     Route::get('movies/list','MovieController@list');

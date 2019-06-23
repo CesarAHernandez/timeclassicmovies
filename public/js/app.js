@@ -41433,7 +41433,8 @@ class App extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     super(...arguments);
     this.state = {
       isLoggedIn: false,
-      user: {}
+      token: null,
+      type: ''
     };
 
     this._loginUser = (email, password) => {
@@ -41456,10 +41457,10 @@ class App extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
             user: userData
           }; // save app state with user date in local storage
 
-          localStorage['appState'] = JSON.stringify(appState);
+          localStorage['AppData'] = JSON.stringify(appState);
           this.setState({
             isLoggedIn: appState.isLoggedIn,
-            user: appState.user
+            token: userData.auth_token
           });
         } else alert('Login Failed!');
 
@@ -41474,13 +41475,9 @@ class App extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       jquery__WEBPACK_IMPORTED_MODULE_3___default()('#email-login-btn').attr('disabled', 'disabled').html('<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span>');
       var formData = new FormData();
       formData.append('type', 'email');
-      formData.append('username', 'usernameee');
       formData.append('password', password);
-      formData.append('phone', 33322212231);
       formData.append('email', email);
-      formData.append('address', 'address okoko');
       formData.append('name', name);
-      formData.append('id', 76);
       axios__WEBPACK_IMPORTED_MODULE_4___default.a.post('http://localhost/api/user/register', formData).then(response => {
         console.log(response);
         return response;
@@ -41501,12 +41498,13 @@ class App extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
           };
           let appState = {
             isLoggedIn: true,
-            user: userData
+            token: userData.auth_token
           }; // save app state with user date in local storage
 
-          localStorage['appState'] = JSON.stringify(appState);
+          localStorage['AppData'] = JSON.stringify(appState);
           this.setState({
             isLoggedIn: appState.isLoggedIn,
+            type: 'Bearer',
             user: appState.user
           }); // redirect home
           //this.props.history.push("/");
@@ -41524,24 +41522,30 @@ class App extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     this._logoutUser = () => {
       let appState = {
         isLoggedIn: false,
-        user: {}
+        token: null,
+        type: ''
       }; // save app state with user date in local storage
 
-      localStorage['appState'] = JSON.stringify(appState);
+      localStorage['AppData'] = JSON.stringify(appState);
+      location.reload(true);
       this.setState(appState);
     };
   }
 
   componentDidMount() {
-    let state = localStorage['appState'];
+    if (localStorage['AppData']) {
+      let _JSON$parse = JSON.parse(localStorage['AppData']),
+          token = _JSON$parse.token,
+          isLoggedIn = _JSON$parse.isLoggedIn,
+          type = _JSON$parse.type;
 
-    if (state) {
-      let AppState = JSON.parse(state);
-      console.log(AppState);
-      this.setState({
-        isLoggedIn: AppState.isLoggedIn,
-        user: AppState
-      });
+      if (token) {
+        this.setState({
+          isLoggedIn,
+          token,
+          type
+        });
+      }
     }
   }
 
@@ -41871,7 +41875,6 @@ class Home extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
   constructor() {
     super(...arguments);
     this.state = {
-      token: localStorage['appState'] ? JSON.parse(localStorage['appState']).user.auth_token : '',
       frontPageMovies: {}
     };
   }
@@ -42015,11 +42018,14 @@ const Login = (_ref) => {
   const onMessage = e => {
     if (e.origin !== window.origin || !e.data.token) {
       return;
-    }
+    } // thinking about setting this to one object
 
-    console.log(e.data);
-    localStorage.setItem('token', e.data.token);
-    localStorage.setItem('type', e.data.type);
+
+    localStorage.setItem('AppData', JSON.stringify({
+      isLoggedIn: true,
+      token: e.data.token,
+      type: e.data.type
+    }));
     window.location = e.data.to;
   };
 
@@ -42660,8 +42666,8 @@ const Video = () => {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/cesarhernandez/Projects/php/time-classic-movies/resources/js/App.js */"./resources/js/App.js");
-module.exports = __webpack_require__(/*! /Users/cesarhernandez/Projects/php/time-classic-movies/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\tinh5\OneDrive\Documents\Projects\php\time-classic-movies\resources\js\App.js */"./resources/js/App.js");
+module.exports = __webpack_require__(/*! C:\Users\tinh5\OneDrive\Documents\Projects\php\time-classic-movies\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
