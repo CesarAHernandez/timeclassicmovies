@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
+import SingleVideo from './singles/SingleVideo';
+
 const Home = () => {
     // const [token, setToken] = useState(localStorage['appState'] ? JSON.parse(localStorage['appState']).user.auth_token : '');
     const [frontPageMovies, setFrontPageMovies] = useState({});
@@ -18,7 +20,7 @@ const Home = () => {
     }, []);
 
     var popularGenres = Object.keys(frontPageMovies);
-    var limit = 7;
+    var limit = 6;
     return (
         <div id="home-page" className="container">
             <div className="hero">
@@ -32,19 +34,10 @@ const Home = () => {
                                 <h1>{genre}</h1>
                                 <Link to={`/movie/genre/${genre}`}>View all</Link>
                             </div>
-                            <div className="videos">
+                            <div className="row">
                                 {frontPageMovies[genre].map((value, index) => {
                                     if (index < limit) {
-                                        return (
-                                            <div key={index} className="video">
-                                                <Link to={`/movie/${value.id}`}>
-                                                    <img src={value.poster_location} />
-                                                </Link>
-                                                <Link to={`/movie/${value.id}`}>
-                                                    <div className="video-title">{value.title}</div>
-                                                </Link>
-                                            </div>
-                                        );
+                                        return <SingleVideo id={value.id} posterLocation={value.poster_location} title={value.title} />;
                                     }
                                 })}
                             </div>

@@ -36539,7 +36539,7 @@ if (false) {} else {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -41796,6 +41796,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _Pagination__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Pagination */ "./resources/js/components/Pagination.js");
 /* harmony import */ var _Search__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Search */ "./resources/js/components/Search.js");
+/* harmony import */ var _singles_SingleVideo__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./singles/SingleVideo */ "./resources/js/components/singles/SingleVideo.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -41803,6 +41804,7 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -41829,16 +41831,11 @@ const GridList = (_ref) => {
     className: "grid"
   }, movies.map((movie, index) => {
     if (index > currentPage * 30 && index < (currentPage + 1) * 30) {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "video",
-        key: index
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/movie/".concat(movie.id)
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: movie.poster_location
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "video-title"
-      }, movie.title));
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_singles_SingleVideo__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        id: movie.id,
+        posterLocation: movie.poster_location,
+        title: movie.title
+      });
     }
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "pagination-container"
@@ -41867,6 +41864,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _singles_SingleVideo__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./singles/SingleVideo */ "./resources/js/components/singles/SingleVideo.js");
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -41878,6 +41876,7 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -41899,7 +41898,7 @@ const Home = () => {
     });
   }, []);
   var popularGenres = Object.keys(frontPageMovies);
-  var limit = 7;
+  var limit = 6;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "home-page",
     className: "container"
@@ -41918,21 +41917,14 @@ const Home = () => {
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, genre), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
       to: "/movie/genre/".concat(genre)
     }, "View all")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "videos"
+      className: "row"
     }, frontPageMovies[genre].map((value, index) => {
       if (index < limit) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          key: index,
-          className: "video"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-          to: "/movie/".concat(value.id)
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          src: value.poster_location
-        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-          to: "/movie/".concat(value.id)
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "video-title"
-        }, value.title)));
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_singles_SingleVideo__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          id: value.id,
+          posterLocation: value.poster_location,
+          title: value.title
+        });
       }
     })));
   })));
@@ -42131,6 +42123,9 @@ const Membership = () => {
         setCard = _useState4[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems);
+    instances[0].close();
     const elements = stripe.elements();
     const cardElement = elements.create('card');
     setCard(cardElement);
@@ -42144,8 +42139,8 @@ const Membership = () => {
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/subscription/one_month_free', {
         token: token.id
       }).then(response => response.data).then(json => {
-        console.log(json);
-      });
+        window.location.href = '/';
+      }, reason => console.log(reason));
     }, reason => {
       console.log(reason);
     });
@@ -42155,16 +42150,30 @@ const Membership = () => {
     id: "membership-page",
     className: "container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Memberships"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "content"
+    className: "row"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "membership"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Gold Membership"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: "https://static3.bigstockphoto.com/2/0/3/large1500/30201035.jpg"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "description"
-  }, "now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    onClick: handleClick
-  }, "buy now")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    className: "col s3 offset-s4"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card medium"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card-image"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: "https://picsum.photos/200/300"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "card-title"
+  }, "Gold Membership")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card-content"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card-action"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    "data-target": "modal1",
+    class: "btn modal-trigger"
+  }, "Buy Now"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "modal1",
+    class: "modal"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    class: "modal-content"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     id: "payment-form"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-row"
@@ -42176,8 +42185,14 @@ const Membership = () => {
     id: "card-errors",
     role: "alert"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "waves-effect waves-light btn",
     onClick: handleClick
-  }, "Submit Payment")));
+  }, "Submit Payment"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    class: "modal-footer"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "#!",
+    class: "modal-close waves-effect waves-green btn-flat"
+  }, "Cancel"))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Membership);
@@ -42249,36 +42264,51 @@ const Pagination = (_ref) => {
   let currentPage = _ref.currentPage,
       movies = _ref.movies,
       setPage = _ref.setPage;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "pagination"
-  }, currentPage !== 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "number",
+  }, currentPage !== 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "waves-effect"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "#!",
     value: 0,
     onClick: setPage
-  }, "first") : '', currentPage > 1 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "number",
+  }, "first")) : '', currentPage > 1 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "waves-effect"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "#!",
     value: currentPage - 2,
     onClick: setPage
-  }, currentPage - 1) : '', currentPage > 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "number",
+  }, currentPage - 1)) : '', currentPage > 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "waves-effect"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "#!",
     value: currentPage - 1,
     onClick: setPage
-  }, currentPage) : '', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "number currentPage",
-    value: currentPage
-  }, currentPage + 1), currentPage < Math.ceil(movies.length / 30) - 1 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "number",
+  }, currentPage)) : '', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "waves-effect active"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "#!",
+    value: currentPage,
+    onClick: setPage
+  }, currentPage + 1)), currentPage < Math.ceil(movies.length / 30) - 1 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "waves-effect"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "#!",
     value: currentPage + 1,
     onClick: setPage
-  }, currentPage + 2) : '', currentPage < Math.ceil(movies.length / 30) - 2 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "number",
+  }, currentPage + 2)) : '', currentPage < Math.ceil(movies.length / 30) - 2 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "waves-effect"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "#!",
     value: currentPage + 2,
     onClick: setPage
-  }, currentPage + 3) : '', currentPage < Math.ceil(movies.length / 30) - 1 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "number",
+  }, currentPage + 3)) : '', currentPage < Math.ceil(movies.length / 30) - 1 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "waves-effect"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "#!",
     value: Math.ceil(movies.length / 30) - 1,
     onClick: setPage
-  }, "last") : '');
+  }, "last")) : '');
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Pagination);
@@ -42475,14 +42505,17 @@ const Search = () => {
     className: "search-form",
     onSubmit: handleSearch,
     method: "post"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "input-field"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     ref: input => _query = input,
-    type: "text",
+    type: "search",
+    id: "search",
     placeholder: "search for title"
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "submit",
     value: "search"
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Results__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Results__WEBPACK_IMPORTED_MODULE_2__["default"], {
     results: searchResults
   }));
 };
@@ -42680,6 +42713,46 @@ const Video = () => {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Video);
+
+/***/ }),
+
+/***/ "./resources/js/components/singles/SingleVideo.js":
+/*!********************************************************!*\
+  !*** ./resources/js/components/singles/SingleVideo.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+
+const SingleVideo = (_ref) => {
+  let posterLocation = _ref.posterLocation,
+      id = _ref.id,
+      title = _ref.title;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col s2"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/movie/".concat(id)
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card hoverable"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card-image"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: "https://picsum.photos/200/300"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card-content"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "card-title"
+  }, title)))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (SingleVideo);
 
 /***/ }),
 

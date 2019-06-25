@@ -21,8 +21,14 @@ const Search = () => {
     return (
         <div className="searchForm-container">
             <form className="search-form" onSubmit={handleSearch} method="post">
-                <input ref={input => (_query = input)} type="text" placeholder="search for title" />
-                <input type="submit" value="search" />
+                <div className="input-field">
+                    {/* <label className="label-icon" htmlFor="search">
+                        <i class="material-icons">search</i>
+                    </label> */}
+                    <input ref={input => (_query = input)} type="search" id="search" placeholder="search for title" />
+                    {/* <i class="material-icons">close</i> */}
+                    <input type="submit" value="search" />
+                </div>
             </form>
             <Result results={searchResults} />
         </div>

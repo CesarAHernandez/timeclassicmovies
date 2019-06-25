@@ -9,6 +9,11 @@
         <script src="//cdn.bitmovin.com/player/web/8/bitmovinplayer.js"></script>
         <!-- Stripe -->
         <script src="https://js.stripe.com/v3/"></script>
+        <!-- Materialize.js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+        <!-- Materialize css -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
         <!-- Fonts -->
         <link rel="stylesheet" href="{{asset('css/app.css')}}">

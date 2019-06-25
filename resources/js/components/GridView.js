@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import Pagination from './Pagination';
 import Search from './Search';
+import SingleVideo from './singles/SingleVideo';
 
 const GridList = ({ movies }) => {
     const [currentPage, setCurrentPage] = useState(0);
@@ -14,17 +15,11 @@ const GridList = ({ movies }) => {
             <div className="search-container">
                 <Search />
             </div>
+
             <div className="grid">
                 {movies.map((movie, index) => {
                     if (index > currentPage * 30 && index < (currentPage + 1) * 30) {
-                        return (
-                            <div className="video" key={index}>
-                                <Link to={`/movie/${movie.id}`}>
-                                    <img src={movie.poster_location} />
-                                </Link>
-                                <div className="video-title">{movie.title}</div>
-                            </div>
-                        );
+                        return <SingleVideo id={movie.id} posterLocation={movie.poster_location} title={movie.title} />;
                     }
                 })}
             </div>
