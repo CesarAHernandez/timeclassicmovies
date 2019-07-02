@@ -33,14 +33,16 @@ class UserController extends Controller
     public function login(Request $request){
         $user = \App\User::where('email', $request->email)->get()->first();
         if($user && \Hash::check($request->password, $user->password)){
-            $token = self::getToken($request->email, $request->password);
-            $user->auth_token = $token;
-            $user->save();
+            // $token = self::getToken($request->email, $request->password);
+            // $user->auth_token = $token;
+            // $user->save();
+            auth()->login($user, true);
+            $token = auth()->user()->createToken('authToken')->accessToken;
             $response = [
                 'success' => true,
                 'data' => [
                     'id' => $user->id,
-                    'auth_token' => $user->auth_token,
+                    'auth_token' => $token,
                     'name'=>$user->name,
                     'email'=>$user->email
                 ]

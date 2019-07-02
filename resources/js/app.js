@@ -18,7 +18,7 @@ import GenreList from './components/GenreList';
 
 class App extends Component {
     state = {
-        isLoggedIn: false,
+        isLoggedIn: JSON.parse(localStorage.getItem('AppData')).isLoggedIn,
         token: null,
         type: ''
     };
@@ -45,12 +45,13 @@ class App extends Component {
                     };
                     let appState = {
                         isLoggedIn: true,
-                        user: userData
+                        user: userData.auth_token
                     };
                     // save app state with user date in local storage
                     localStorage['AppData'] = JSON.stringify(appState);
                     this.setState({
                         isLoggedIn: appState.isLoggedIn,
+                        type: 'Bearer',
                         token: userData.auth_token
                     });
                 } else alert('Login Failed!');
@@ -58,6 +59,7 @@ class App extends Component {
                 $('#login-form button')
                     .removeAttr('disabled')
                     .html('Login');
+                window.location.href = '/';
             })
             .catch(error => {
                 alert(`An Error Occured! ${error}`);
@@ -103,7 +105,7 @@ class App extends Component {
                     this.setState({
                         isLoggedIn: appState.isLoggedIn,
                         type: 'Bearer',
-                        user: appState.user
+                        token: appState.token
                     });
                     // redirect home
                     window.location.href = '/';
