@@ -31,7 +31,7 @@ class App extends Component {
         formData.append('password', password);
 
         axios
-            .post('http://localhost/api/user/login/', formData)
+            .post('http://classicmovies.test/api/user/login/', formData)
             .then(json => {
                 if (json.data.success) {
                     alert('Login Successful!');
@@ -78,7 +78,7 @@ class App extends Component {
         formData.append('name', name);
 
         axios
-            .post('http://localhost/api/user/register', formData)
+            .post('http://classicmovies.test/api/user/register', formData)
             .then(response => {
                 console.log(response);
                 return response;
@@ -106,7 +106,7 @@ class App extends Component {
                         user: appState.user
                     });
                     // redirect home
-                    //this.props.history.push("/");
+                    window.location.href = '/';
                 } else {
                     alert(`Registration Failed!`);
                     $('#email-login-btn')

@@ -7,7 +7,7 @@ const Catalog = () => {
     const [movies, setMovies] = useState([]);
     useEffect(() => {
         axios
-            .get('http://localhost/api/movies/list')
+            .get('http://classicmovies.test/api/movies/list')
             .then(response => {
                 return response.data;
             })

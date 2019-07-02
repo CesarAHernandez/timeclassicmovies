@@ -16,7 +16,6 @@ const Register = ({ history, registerUser = f => f }) => {
                     <span className="form-header">Register</span>
                     <label htmlFor="name-input">Name</label>
                     <div className="form-input">
-                        <span>login logo</span>
                         <input
                             ref={input => (_name = input)}
                             // style={styles.input}
@@ -30,7 +29,6 @@ const Register = ({ history, registerUser = f => f }) => {
                     </div>
                     <label htmlFor="email-input">Email</label>
                     <div className="form-input">
-                        <span>login logo</span>
                         <input
                             ref={input => (_email = input)}
                             // style={styles.input}
@@ -44,7 +42,6 @@ const Register = ({ history, registerUser = f => f }) => {
                     </div>
                     <label htmlFor="password-input">Password</label>
                     <div className="form-input">
-                        <span>password logo</span>
                         <input
                             ref={input => (_password = input)}
                             // style={styles.input}
@@ -58,7 +55,6 @@ const Register = ({ history, registerUser = f => f }) => {
                     </div>
                     <label htmlFor="confirm-password-input">Confirm Password</label>
                     <div className="form-input">
-                        <span>password logo</span>
                         <input
                             ref={input => (_password = input)}
                             // style={styles.input}
@@ -70,6 +66,9 @@ const Register = ({ history, registerUser = f => f }) => {
                             placeholder="Confirm Your password"
                         />
                     </div>
+                    <span>
+                        Already have an account? <Link to="/login">Login</Link>
+                    </span>
                     <button type="submit" id="email-login-btn" href="#facebook">
                         Register
                     </button>

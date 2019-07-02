@@ -50,43 +50,50 @@ class UserController extends Controller
        return response()->json($response, 201);
     }
     public function register(Request $request){
-        $user = new \App\User();
-        $user->password = \Hash::make($request->password);
-        $user->email = $request->email;
-        $user->name = $request->name;
-        $user->auth_token = '';
+        $userEmailCheck = \App\User::where('email', $request->email)->get();
+        if(count($userEmailCheck) > 0){
+            $response = ['success' => false, 'data' => 'Email already exists'];
+        }else{
 
-        // Checks if the user can be saved success fully
-        if($user->save()){
-            // Signs the email and password to the token and assigns it to token
-            $token = self::getToken($request->email, $request->password);
+            $user = new \App\User();
+            $user->password = \Hash::make($request->password);
+            $user->email = $request->email;
+            $user->name = $request->name;
 
-            if(!is_string($token)){
-                return response()->json([
-                    'success' => false,
-                    'data' => 'Token Generated Failed'
-                ], 201);
+            // Checks if the user can be saved success fully
+            if($user->save()){
+                // Signs the email and password to the token and assigns it to token
+                // $token = self::getToken($request->email, $request->password);
+
+                // if(!is_string($token)){
+                //     return response()->json([
+                //         'success' => false,
+                //         'data' => 'Token Generated Failed'
+                //     ], 201);
+                // }
+                // Gets the user from the database from the email
+                $user = \App\User::where('email', $request->email)->get()->first();
+
+                // We are using the updated user token
+                // $user->auth_token = $token;
+                auth()->login($user, true);
+                $token = auth()->user()->createToken('authToken')->accessToken;
+
+                // I don't know why i do this one again
+                $user->save();
+
+                $response = [
+                    'success' => true,
+                    'data'=>[
+                        'name'=>$user->name,
+                        'id' => $user->id,
+                        'email' => $request->email,
+                        'auth_token' => $token
+                    ]
+                ];
+            } else {
+                $response = ['success' => false, 'data' => 'Could not register user'];
             }
-            // Gets the user from the database from the email
-            $user = \App\User::where('email', $request->email)->get()->first();
-
-            // We are using the updated user token
-            $user->auth_token = $token;
-
-            // I don't know why i do this one again
-            $user->save();
-
-            $response = [
-                'success' => true,
-                'data'=>[
-                    'name'=>$user->name,
-                    'id' => $user->id,
-                    'email' => $request->email,
-                    'auth_token' => $token
-                ]
-            ];
-        } else {
-            $response = ['success' => false, 'data' => 'Could not register user'];
         }
         return response()->json($response, 201);
     }

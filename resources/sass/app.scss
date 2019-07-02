@@ -51,18 +51,16 @@ input {
     padding-bottom: 2rem;
     position: relative;
 }
+.logo {
+    height: 50px;
+    width: 50px;
+}
 #nav-bar {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding: 20px;
     background: $background-color;
-    .logo {
-        img {
-            height: 50px;
-            width: 50px;
-        }
-    }
     .menu {
         text-transform: uppercase;
         font-size: 1.8rem;

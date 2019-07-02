@@ -76,48 +76,60 @@ const Login = ({ history, loginUser = f => f }) => {
         };
     }, []);
     return (
-        <div id="login-page" class="container">
-            <div className="form-container">
-                <form id="login-form" action="" onSubmit={handleLogin} method="post">
-                    <span className="form-header">Login</span>
-                    <label htmlFor="email-input">Email</label>
-                    <div className="form-input">
-                        <span>login logo</span>
-                        <input
-                            ref={input => (_email = input)}
-                            autoComplete="off"
-                            id="email-input"
-                            name="email"
-                            type="text"
-                            className="center-block"
-                            placeholder="Type your Email"
-                        />
+        <div id="login-page" className="container">
+            <div className="row">
+                <form id="login-form" className="white col s12 m6 offset-m3" action="" onSubmit={handleLogin} method="post">
+                    <div className="row">
+                        <h2 className="col s6 offset-s3">Login</h2>
                     </div>
-                    <label htmlFor="password-input">Password</label>
-                    <div className="form-input">
-                        <span>password logo</span>
-                        <input
-                            ref={input => (_password = input)}
-                            autoComplete="off"
-                            id="password-input"
-                            name="password"
-                            type="password"
-                            className="center-block"
-                            placeholder="Type Your password"
-                        />
+                    {/* <label htmlFor="email-input">Email</label> */}
+                    <div className="row">
+                        <div className="input-field col s12 m6 offset-s0 offset-m3">
+                            <input
+                                ref={input => (_email = input)}
+                                autoComplete="off"
+                                id="email-input"
+                                name="email"
+                                type="text"
+                                className="validate"
+                                placeholder="Email"
+                            />
+                            <label className="active black-text" htmlFor="email-input">
+                                Email
+                            </label>
+                        </div>
                     </div>
-                    <Link to="/register" className="forgot-password">
-                        Forgot Password
-                    </Link>
-                    <button type="submit" id="email-login-btn" href="#facebook">
-                        Login
-                    </button>
-                    <a href="" onClick={handleSocialLogin}>
-                        Login with GOOGLE
-                    </a>
-                    <Link to="/register" className="register-btn">
-                        Register
-                    </Link>
+                    {/* <label htmlFor="password-input">Password</label> */}
+                    <div className="row">
+                        <div className="input-field col s12 m6 offset-s0 offset-m3">
+                            <input
+                                ref={input => (_password = input)}
+                                autoComplete="off"
+                                id="password-input"
+                                name="password"
+                                type="password"
+                                className="validate"
+                                placeholder="Password"
+                            />
+                            <label className="active black-text" htmlFor="password-input">
+                                Password
+                            </label>
+                            <Link to="/register" className="col s7 offset-s7 forgot-password">
+                                Forgot Password
+                            </Link>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <button class="col s4 offset-s4 btn waves-effect waves-light" type="submit" id="email-login-btn" name="action">
+                            Login
+                        </button>
+                        <button onClick={handleSocialLogin} class="red darken-1 white-text col s4 offset-s4 btn waves-effect waves-light">
+                            Login with Google
+                        </button>
+                        <Link to="/register" className="col s12 offset-s3 register-btn">
+                            Register
+                        </Link>
+                    </div>
                 </form>
             </div>
         </div>

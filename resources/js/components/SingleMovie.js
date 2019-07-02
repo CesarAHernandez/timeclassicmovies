@@ -1,9 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import styled, { css } from 'styled-components';
 import axios from 'axios';
 import Video from '../components/Video';
 
 const SingleMovie = ({ match }) => {
+    const MovieInfo = styled.div`
+        padding-bottom: 15px;
+        padding-top: 10px;
+        grid-row-gap: 15px;
+        > a {
+            padding-right: 10px;
+        }
+    `;
+    const MovieInfoItem = styled.span`
+        padding: 4px 13px;
+        background: white;
+        border-radius: 15px;
+        -webkit-box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.75);
+        box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.75);
+    `;
     const [movieInfo, setMovieInfo] = useState({
         title: '',
         poster_location: '',
@@ -13,7 +30,7 @@ const SingleMovie = ({ match }) => {
         minutes: 0
     });
     useEffect(() => {
-        const url = `http://localhost/api/movie/${match.params.id}`;
+        const url = `http://classicmovies.test/api/movie/${match.params.id}`;
         axios
             .get(url)
             .then(data => {
@@ -39,7 +56,6 @@ const SingleMovie = ({ match }) => {
     if (movieInfo.title.length === 0) {
         return <div> Loading... </div>;
     }
-    console.log(movieInfo);
 
     return (
         <div id="singleMovie-page" className="container">
@@ -61,31 +77,40 @@ const SingleMovie = ({ match }) => {
                     <span className="video-rating">4/5 Stars</span>
                     <span className="video-synopsis">{movieInfo.synopsis}</span>
                     <div className="genres">
-                        {movieInfo.genres.map(genre => {
-                            return (
-                                <Link to={`/movie/genre/${genre.genre}`}>
-                                    <span className="genre">{genre.genre}</span>
-                                </Link>
-                            );
-                        })}
+                        <div className="title">Genres:</div>
+                        <MovieInfo className="values">
+                            {movieInfo.genres.map(genre => {
+                                return (
+                                    <Link to={`/movie/genre/${genre.genre}`}>
+                                        <MovieInfoItem className="genre">{genre.genre}</MovieInfoItem>
+                                    </Link>
+                                );
+                            })}
+                        </MovieInfo>
                     </div>
                     <div className="stars">
-                        {movieInfo.stars.map(star => {
-                            return (
-                                <Link to={`/movie/star/${star.slug}`}>
-                                    <span className="star">{star.name}</span>
-                                </Link>
-                            );
-                        })}
+                        <div className="title">Stars:</div>
+                        <MovieInfo className="values">
+                            {movieInfo.stars.map(star => {
+                                return (
+                                    <Link to={`/movie/star/${star.slug}`}>
+                                        <MovieInfoItem className="star">{star.name}</MovieInfoItem>
+                                    </Link>
+                                );
+                            })}
+                        </MovieInfo>
                     </div>
                     <div className="directors">
-                        {movieInfo.directors.map(director => {
-                            return (
-                                <Link to={`/movie/director/${director.slug}`}>
-                                    <span className="director">{director.name}</span>
-                                </Link>
-                            );
-                        })}
+                        <div className="title">Directors:</div>
+                        <MovieInfo className="values">
+                            {movieInfo.directors.map(director => {
+                                return (
+                                    <Link to={`/movie/director/${director.slug}`}>
+                                        <MovieInfoItem className="director">{director.name}</MovieInfoItem>
+                                    </Link>
+                                );
+                            })}
+                        </MovieInfo>
                     </div>
                 </div>
             </div>

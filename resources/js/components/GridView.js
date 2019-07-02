@@ -12,8 +12,13 @@ const GridList = ({ movies }) => {
     };
     return (
         <div className="gridView-container">
-            <div className="search-container">
+            {/* <div className="search-container">
                 <Search />
+            </div>  */}
+            <div className="row">
+                <div className="col s6 right">
+                    <Search />
+                </div>
             </div>
 
             <div className="grid">

@@ -15,6 +15,8 @@
         <!-- Materialize css -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
+        <!-- Materialize icon -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!-- Fonts -->
         <link rel="stylesheet" href="{{asset('css/app.css')}}">
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
