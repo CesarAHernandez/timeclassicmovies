@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import axios from 'axios';
-import Video from '../components/Video';
+import VideoPlayer from './singles/VideoPlayer';
 
 const SingleMovie = ({ match }) => {
     const MovieInfo = styled.div`
@@ -39,18 +39,31 @@ const SingleMovie = ({ match }) => {
             .then(json => {
                 const movie = json.data;
                 //setting the movie state to the movie that we got from the database
+                console.log(movie);
                 setMovieInfo({
                     title: movie.title,
                     poster_location: movie.poster_location,
                     synopsis: movie.synopsis,
                     genres: movie.genre,
                     directors: movie.director,
+                    released_year: movie.released_year,
                     stars: movie.star,
                     hours: 0,
                     minutes: 0
                 });
             });
     }, []);
+    const playerOptions = {
+        autoplay: false,
+        controls: true,
+        width: '1200px',
+        sources: [
+            {
+                src: 'https://s3.amazonaws.com/tcm-stream-out/Afgrunden_1910.mp4',
+                type: 'video/mp4'
+            }
+        ]
+    };
 
     if (movieInfo.title.length === 0) {
         return <div> Loading... </div>;
@@ -60,7 +73,7 @@ const SingleMovie = ({ match }) => {
         <div id="singleMovie-page" className="container">
             <h1>{movieInfo.title}</h1>
             <div className="video-trailer">
-                <Video />
+                <VideoPlayer playerConfig={playerOptions} />
             </div>
             <div className="video-description">
                 <div className="video-img">
@@ -69,7 +82,9 @@ const SingleMovie = ({ match }) => {
                     </div>
                 </div>
                 <div className="video-summary">
-                    <span className="video-title">{movieInfo.title}</span>
+                    <span className="video-title">
+                        {movieInfo.title} - {movieInfo.released_year}
+                    </span>
                     <span className="video-length">
                         {movieInfo.hours} hour {movieInfo.minutes} minutes
                     </span>
@@ -78,9 +93,9 @@ const SingleMovie = ({ match }) => {
                     <div className="genres">
                         <div className="title">Genres:</div>
                         <MovieInfo className="values">
-                            {movieInfo.genres.map(genre => {
+                            {movieInfo.genres.map((genre, indx) => {
                                 return (
-                                    <Link to={`/movie/genre/${genre.genre}`}>
+                                    <Link key={indx} to={`/movie/genre/${genre.genre}`}>
                                         <MovieInfoItem className="genre">{genre.genre}</MovieInfoItem>
                                     </Link>
                                 );
@@ -90,9 +105,9 @@ const SingleMovie = ({ match }) => {
                     <div className="stars">
                         <div className="title">Stars:</div>
                         <MovieInfo className="values">
-                            {movieInfo.stars.map(star => {
+                            {movieInfo.stars.map((star, indx) => {
                                 return (
-                                    <Link to={`/movie/star/${star.slug}`}>
+                                    <Link key={indx} to={`/movie/star/${star.slug}`}>
                                         <MovieInfoItem className="star">{star.name}</MovieInfoItem>
                                     </Link>
                                 );
@@ -102,9 +117,9 @@ const SingleMovie = ({ match }) => {
                     <div className="directors">
                         <div className="title">Directors:</div>
                         <MovieInfo className="values">
-                            {movieInfo.directors.map(director => {
+                            {movieInfo.directors.map((director, indx) => {
                                 return (
-                                    <Link to={`/movie/director/${director.slug}`}>
+                                    <Link key={indx} to={`/movie/director/${director.slug}`}>
                                         <MovieInfoItem className="director">{director.name}</MovieInfoItem>
                                     </Link>
                                 );

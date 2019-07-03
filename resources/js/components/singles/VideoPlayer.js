@@ -1,19 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import videojs from 'video.js';
 
-const Video = () => {
+const Video = ({ playerConfig }) => {
     const [video, setVideo] = useState(null);
 
-    const playerOptions = {
-        autoplay: true,
-        controls: true,
-        sources: [
-            {
-                src: 'https://s3.amazonaws.com/tcm-stream-out/Afgrunden_1910.mp4',
-                type: 'video/mp4'
-            }
-        ]
-    };
+    let videoNode;
     useEffect(() => {
         setupPlayer();
         return function cleanup() {
@@ -21,8 +12,7 @@ const Video = () => {
         };
     }, []);
     const setupPlayer = () => {
-        videojs('video-player', playerOptions, function() {
-            console.log(this, 'got setup');
+        videojs(videoNode, playerConfig, function() {
             setVideo(this);
         });
     };
@@ -32,6 +22,12 @@ const Video = () => {
             setVideo(null);
         }
     };
-    return <div id="video-player" />;
+    return (
+        <div>
+            <div data-vjs-player>
+                <video ref={node => (videoNode = node)} className="video-js" />
+            </div>
+        </div>
+    );
 };
 export default Video;
