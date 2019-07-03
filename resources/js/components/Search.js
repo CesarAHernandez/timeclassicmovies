@@ -7,7 +7,7 @@ const Search = () => {
     let _query;
     const handleSearch = () => {
         // e.preventDefault();
-        const url = `http://classicmovies.test/api/movie/search`;
+        const url = `/api/movie/search`;
         axios
             .post(url, {
                 query: _query.value

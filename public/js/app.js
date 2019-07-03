@@ -44561,7 +44561,7 @@ class App extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       var formData = new FormData();
       formData.append('email', email);
       formData.append('password', password);
-      axios__WEBPACK_IMPORTED_MODULE_4___default.a.post('http://classicmovies.test/api/user/login/', formData).then(json => {
+      axios__WEBPACK_IMPORTED_MODULE_4___default.a.post('/api/user/login/', formData).then(json => {
         if (json.data.success) {
           alert('Login Successful!');
           let userData = {
@@ -44599,7 +44599,7 @@ class App extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       formData.append('password', password);
       formData.append('email', email);
       formData.append('name', name);
-      axios__WEBPACK_IMPORTED_MODULE_4___default.a.post('http://classicmovies.test/api/user/register', formData).then(response => {
+      axios__WEBPACK_IMPORTED_MODULE_4___default.a.post('/api/user/register', formData).then(response => {
         console.log(response);
         return response;
       }).then(json => {
@@ -44780,7 +44780,7 @@ const Catalog = () => {
         setMovies = _useState2[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
-    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('http://classicmovies.test/api/movies/list').then(response => {
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/movies/list').then(response => {
       return response.data;
     }).then(json => {
       setMovies(json.data);
@@ -45694,7 +45694,7 @@ const Search = () => {
 
   const handleSearch = () => {
     // e.preventDefault();
-    const url = "http://classicmovies.test/api/movie/search";
+    const url = "/api/movie/search";
     axios__WEBPACK_IMPORTED_MODULE_1___default.a.post(url, {
       query: _query.value
     }).then(response => {
@@ -45796,13 +45796,12 @@ const SingleMovie = (_ref) => {
         setMovieInfo = _useState2[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
-    const url = "http://classicmovies.test/api/movie/".concat(match.params.id);
+    const url = "/api/movie/".concat(match.params.id);
     axios__WEBPACK_IMPORTED_MODULE_3___default.a.get(url).then(data => {
       return data.data;
     }).then(json => {
       const movie = json.data; //setting the movie state to the movie that we got from the database
 
-      console.log(movie);
       setMovieInfo({
         title: movie.title,
         poster_location: movie.poster_location,

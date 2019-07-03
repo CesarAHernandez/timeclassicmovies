@@ -30,7 +30,7 @@ const SingleMovie = ({ match }) => {
         minutes: 0
     });
     useEffect(() => {
-        const url = `http://classicmovies.test/api/movie/${match.params.id}`;
+        const url = `/api/movie/${match.params.id}`;
         axios
             .get(url)
             .then(data => {
@@ -39,7 +39,6 @@ const SingleMovie = ({ match }) => {
             .then(json => {
                 const movie = json.data;
                 //setting the movie state to the movie that we got from the database
-                console.log(movie);
                 setMovieInfo({
                     title: movie.title,
                     poster_location: movie.poster_location,

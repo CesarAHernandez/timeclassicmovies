@@ -31,7 +31,7 @@ class App extends Component {
         formData.append('password', password);
 
         axios
-            .post('http://classicmovies.test/api/user/login/', formData)
+            .post('/api/user/login/', formData)
             .then(json => {
                 if (json.data.success) {
                     alert('Login Successful!');
@@ -80,7 +80,7 @@ class App extends Component {
         formData.append('name', name);
 
         axios
-            .post('http://classicmovies.test/api/user/register', formData)
+            .post('/api/user/register', formData)
             .then(response => {
                 console.log(response);
                 return response;
