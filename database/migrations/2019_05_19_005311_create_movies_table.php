@@ -19,8 +19,8 @@ class CreateMoviesTable extends Migration
             $table->text('synopsis');
             $table->integer('released_year');
             $table->string('imdb_url', 100);
-            $table->string('s3_location', 100);
-            $table->string('poster_location', 100);
+            $table->mediumText('s3_location', 100);
+            $table->mediumText('poster_location', 100);
             $table->boolean('isRestricted');
             $table->timestamps();
 

@@ -44850,32 +44850,32 @@ const Footer = () => {
     class: "col l6 s12"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
     class: "white-text"
-  }, "Footer Content"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+  }, "Time Classic Movies"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     class: "grey-text text-lighten-4"
-  }, "You can use rows and columns here to organize your footer content.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "A Place to watch classic movies for free")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     class: "col l4 offset-l2 s12"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
     class: "white-text"
-  }, "Links"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+  }, "WebSite"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     class: "grey-text text-lighten-3",
-    href: "#!"
-  }, "Link 1")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    to: "/about"
+  }, "About")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     class: "grey-text text-lighten-3",
-    href: "#!"
-  }, "Link 2")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    to: "/login"
+  }, "Login")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     class: "grey-text text-lighten-3",
-    href: "#!"
-  }, "Link 3")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    to: "/register"
+  }, "Register")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     class: "grey-text text-lighten-3",
-    href: "#!"
-  }, "Link 4")))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    to: "/membership"
+  }, "Membership")))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     class: "footer-copyright"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     class: "container"
-  }, "\xA9 2014 Copyright Text", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     class: "grey-text text-lighten-4 right",
     href: "#!"
-  }, "More Links"))));
+  }))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Footer);
@@ -44987,7 +44987,7 @@ const GridList = (_ref) => {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Search__WEBPACK_IMPORTED_MODULE_3__["default"], null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "grid"
   }, movies.map((movie, index) => {
-    if (index > currentPage * 30 && index < (currentPage + 1) * 30) {
+    if (index > currentPage * 31 && index < (currentPage + 1) * 31) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_singles_SingleVideo__WEBPACK_IMPORTED_MODULE_4__["default"], {
         id: movie.id,
         posterLocation: movie.poster_location,
@@ -45385,29 +45385,36 @@ __webpack_require__.r(__webpack_exports__);
 
 class Navigation extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
   render() {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
+      className: "orange lighten-4"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       class: "nav-wrapper"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
       to: "/",
       className: "brand-logo"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-      className: "valign-wrapper responsive-img logo",
-      src: "https://i.imgur.com/mBYRhyS.png"
-    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "black-text"
+    }, "Time Classic Movies")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
       id: "nav-mobile",
-      class: "valign-wrapper right hide-on-med-and-down"
+      className: "valign-wrapper right hide-on-med-and-down "
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+      className: "black-text",
       to: "/"
     }, "Home")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+      className: "black-text",
       to: "/about"
     }, "About")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+      className: "black-text",
       to: "/catalog"
     }, "Catalog")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+      className: "black-text",
       to: "/membership"
     }, "Membership")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, (() => {
       return this.props.isLoggedIn ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        className: "black-text",
         onClick: this.props.logoutUser
       }, "Log Out") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+        className: "black-text",
         to: "/login"
       }, "Log In");
     })()))));
@@ -45579,6 +45586,7 @@ const Register = (_ref) => {
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Already have an account? ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/login"
   }, "Login")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "btn",
     type: "submit",
     id: "email-login-btn",
     href: "#facebook"

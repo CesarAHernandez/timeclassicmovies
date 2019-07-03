@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
-
+use App\Movie;
 class MoviesTableSeeder extends Seeder
 {
     /**
@@ -13,32 +13,20 @@ class MoviesTableSeeder extends Seeder
      */
     public function run()
     {
-        //
-        $this->call([GenreSeeder::class]);
-        factory(App\Movie::class, 1300)->create();
-        factory(App\Director::class, 700)->create();
-        factory(App\Star::class, 3000)->create();
+        $json = File::get('database/data/data.json');
+        $data = json_decode($json);
 
-        $genres = App\Genre::all();
-        $stars = App\Star::all();
-        $directors = App\Director::all();
+        foreach($data as $obj){
+            Movie::create(array(
+                'title' => $obj->title,
+                'synopsis' => $obj->synopsis,
+                'poster_location' => $obj->poster_location,
+                'imdb_url' => $obj->imdb_url,
+                's3_location' => $obj->s3_location,
+                'released_year' => $obj->released_year,
+                'isRestricted' => $obj->isRestricted,
+            ));
 
-        App\Movie::all()->each(function ($movie) use ($genres) {
-            $movie->genre()->attach(
-                $genres->random(rand(1,4))->pluck('id')->toArray()
-            );
-        });
-
-        App\Movie::all()->each(function ($movie) use ($directors){
-            $movie->director()->attach(
-                $directors->random(rand(1,2))->pluck('id')->toArray()
-            );
-        });
-
-        App\Movie::all()->each(function ($movie) use ($stars){
-            $movie->star()->attach(
-                $stars->random(rand(4,7))->pluck('id')->toArray()
-            );
-        });
+        }
     }
 }

@@ -23,7 +23,7 @@ const GridList = ({ movies }) => {
 
             <div className="grid">
                 {movies.map((movie, index) => {
-                    if (index > currentPage * 30 && index < (currentPage + 1) * 30) {
+                    if (index > currentPage * 31 && index < (currentPage + 1) * 31) {
                         return <SingleVideo id={movie.id} posterLocation={movie.poster_location} title={movie.title} />;
                     }
                 })}

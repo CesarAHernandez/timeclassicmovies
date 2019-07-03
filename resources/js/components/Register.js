@@ -69,7 +69,7 @@ const Register = ({ history, registerUser = f => f }) => {
                     <span>
                         Already have an account? <Link to="/login">Login</Link>
                     </span>
-                    <button type="submit" id="email-login-btn" href="#facebook">
+                    <button className="btn" type="submit" id="email-login-btn" href="#facebook">
                         Register
                     </button>
                 </form>

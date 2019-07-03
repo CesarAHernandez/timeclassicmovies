@@ -4,28 +4,44 @@ import { NavLink } from 'react-router-dom';
 export default class Navigation extends Component {
     render() {
         return (
-            <nav>
+            <nav className="orange lighten-4">
                 <div class="nav-wrapper">
                     <NavLink to="/" className="brand-logo">
-                        <img className="valign-wrapper responsive-img logo" src="https://i.imgur.com/mBYRhyS.png" />
+                        <div className="black-text">Time Classic Movies</div>
                     </NavLink>
 
-                    <ul id="nav-mobile" class="valign-wrapper right hide-on-med-and-down">
+                    <ul id="nav-mobile" className="valign-wrapper right hide-on-med-and-down ">
                         <li>
-                            <NavLink to="/">Home</NavLink>
+                            <NavLink className="black-text" to="/">
+                                Home
+                            </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/about">About</NavLink>
+                            <NavLink className="black-text" to="/about">
+                                About
+                            </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/catalog">Catalog</NavLink>
+                            <NavLink className="black-text" to="/catalog">
+                                Catalog
+                            </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/membership">Membership</NavLink>
+                            <NavLink className="black-text" to="/membership">
+                                Membership
+                            </NavLink>
                         </li>
                         <li>
                             {(() => {
-                                return this.props.isLoggedIn ? <a onClick={this.props.logoutUser}>Log Out</a> : <NavLink to="/login">Log In</NavLink>;
+                                return this.props.isLoggedIn ? (
+                                    <a className="black-text" onClick={this.props.logoutUser}>
+                                        Log Out
+                                    </a>
+                                ) : (
+                                    <NavLink className="black-text" to="/login">
+                                        Log In
+                                    </NavLink>
+                                );
                             })()}
                         </li>
                     </ul>
